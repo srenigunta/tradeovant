@@ -1,0 +1,44 @@
+source:
+  sctr_reports:
+    largecap:
+      bucket: "raw_store"
+      sub_path: "stockcharts/sctr_reports/largecap_sctr_report/json"
+      pattern: "largecap_sctr_report_*.json"
+      marketcaptype: "large"
+    midcap:
+      bucket: "raw_store"
+      sub_path: "stockcharts/sctr_reports/midcap_sctr_report/json"
+      pattern: "midcap_sctr_report_*.json"
+      marketcaptype: "mid"
+    smallcap:
+      bucket: "raw_store"
+      sub_path: "stockcharts/sctr_reports/smallcap_sctr_report/json"
+      pattern: "smallcap_sctr_report_*.json"
+      marketcaptype: "small"
+    etf:
+      bucket: "raw_store"
+      sub_path: "stockcharts/sctr_reports/etf_sctr_report/json"
+      pattern: "etf_sctr_report_*.json"
+      marketcaptype: "etf"
+
+target:
+  bucket: "stage_store"
+  base_path: "stockcharts/sctr_reports"
+  pattern: "file_version_date={date}/schrts_sctr_reports_{date}.parquet"
+  columns:
+    - date
+    - symbol
+    - marketCap
+    - vol
+    - name
+    - SCTR
+    - delta
+    - industry
+    - sector
+    - close
+    - marketcaptype
+    - file_version_date  # Added for partitioning
+
+processing:
+  log_level: "INFO"
+  delta_tracking_file: "processed_sctr_files.txt"

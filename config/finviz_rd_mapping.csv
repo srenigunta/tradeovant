@@ -1,0 +1,7 @@
+current_column,new_column
+Date,date
+Status,status
+Outer,rating_by
+Rating,rating
+Price,targets
+Ticker,symbol

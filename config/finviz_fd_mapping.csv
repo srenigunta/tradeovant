@@ -1,0 +1,123 @@
+﻿current_column,new_column
+Change,perf_day_perc
+Company,name
+Country,country
+Earnings,earnings_date
+Employees,employees
+Exchange,exchange
+Index,index_holding
+Industry,industry
+Insider Own,insiderown_perc
+Insider Trans,insidertrans_perc
+Inst Own,instown_perc
+Inst Trans,insttrans_perc
+Market Cap,marketcap
+Option/Short,option_short
+Sector,sector
+Short Float,shortfloat_perc
+Short Interest,shortinterest
+Short Ratio,shortratio
+Shs Float,shsfloat
+Shs Outstand,shsoutstand
+Target Price,targetprice
+Ticker,symbol
+Beta,beta
+Book/sh,booksh
+Cash/sh,cashsh
+Current Ratio,currentratio
+Debt/Eq,debteq
+Dividend Est.,dividend_est
+Dividend Ex-Date,ex_div_date
+Dividend TTM,dividend_ttm
+EPS (ttm),eps_ttm
+EPS next 5Y,eps_next5y_perc
+EPS next Q,eps_nextq
+EPS next Y,eps_nexty
+EPS next Y Percentage,eps_nexty_perc
+EPS past 5Y,eps_past5y_perc
+EPS Q/Q,eps_qq_perc
+EPS Surprise,eps_surprise_perc
+EPS this Y,eps_thisy_perc
+EPS Y/Y TTM,eps_yy_ttm_perc
+Forward P/E,forwardpe
+Gross Margin,grossmargin_perc
+Income,income
+LT Debt/Eq,lt_debt_eq_perc
+Oper. Margin,opermargin_perc
+P/B,pb
+P/C,pc
+P/E,pe
+P/FCF,pfcf
+P/S,ps
+Payout,payout_perc
+PEG,peg
+Profit Margin,profitmargin_perc
+Quick Ratio,quickratio
+Recom,recom
+ROA,roa_perc
+ROE,roe_perc
+ROI,roi_perc
+Sales,sales
+Sales past 5Y,sales_past5y_perc
+Sales Q/Q,sales_qq_perc
+Sales Surprise,sales_surprise_perc
+Sales Y/Y TTM,sales_yy_ttm_perc
+52W High,w52_high_perc
+52W Low,w52_low_perc
+52W Range From,w52_low_range
+52W Range To,w52_high_range
+ATR (14),atr
+Avg Volume,avgvolume
+Perf Half Y,perf_halfy_perc
+Perf Month,perf_month_perc
+Perf Quarter,perf_quarter_perc
+Perf Week,perf_week_perc
+Perf Year,perf_year_perc
+Perf YTD,perf_ytd_perc
+Prev Close,prev_close
+Price,price
+Rel Volume,relvolume
+RSI (14),rsi
+SMA20,sma20_perc
+SMA200,sma200_perc
+SMA50,sma50_perc
+Volatility M,volatilitym_perc
+Volatility W,volatilityw_perc
+Volume,volume
+Category,category
+Asset Type,assettype
+Return% 1Y,return_1y_perc
+Sponsor,sponsor
+ETF Type,etf_flag
+Return% 3Y,return_3y_perc
+Total Holdings,total_holdings
+Return% 5Y,return_5y_perc
+AUM,aum
+Flows% 1M,flows_1m_perc
+Flows% 3M,flows_3m_perc
+Flows% YTD,flows_ytd_perc
+Expense,expense_perc
+ESG Type,esg_type
+Dividend Type,div_type
+Sector/Theme,sector_theme
+Average Maturity,avg_maturity
+Return% 10Y,return_10y
+NAV%,nav_perc
+Index Weighting,index_weighting
+Commodity Type,commodity_type
+Return% SI,return_si
+NAV/sh,nav_per_share
+Active/Passive,active_passive
+Quant Type,quant_type
+Tags,tags
+Structure Type,structure_type
+Region,region_etf
+Flows% 1Y,flows_1y
+Growth/Value,growth_value_etf
+Dev/Emerg,dev_emerg_etf
+Flows% 3Y,flows_3y
+Inverse/Leveraged,inv_lev_flag
+Currency,currency
+Flows% 5Y,flows_5y
+Fund Family,fund_family
+Bond Type,bond_type

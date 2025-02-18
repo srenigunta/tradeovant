@@ -1,0 +1,143 @@
+SELECT
+    symbol,name,sector,industry,country,exchange,index_holding,
+    CASE WHEN length(etf_flag) = 2 THEN 1 ELSE 0 END AS etf_flag,
+    CASE WHEN pe = '-' or pe = '' THEN NULL ELSE CAST(trim(pe) AS FLOAT) END AS pe,
+    CASE WHEN eps_ttm = '-' or eps_ttm = '' THEN NULL ELSE CAST(eps_ttm AS FLOAT) END AS eps_ttm,
+    CASE WHEN insiderown_perc = '-' or insiderown_perc = '' THEN NULL ELSE CAST(REPLACE(insiderown_perc,'%','') AS FLOAT) END AS insiderown_perc,
+    CASE 
+        WHEN length(shsoutstand) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in shsoutstand) > 1 
+                THEN cast(substring(shsoutstand, 1, length(shsoutstand)-1) as float)
+                ELSE cast(substring(shsoutstand, 1, length(shsoutstand)-1) as float)*1000
+            END  
+    END AS shsoutstand,
+    CASE 
+        WHEN length(marketcap) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in marketcap) > 1 
+                THEN cast(substring(marketcap, 1, length(marketcap)-1) as float)
+                ELSE cast(substring(marketcap, 1, length(marketcap)-1) as float)*1000
+            END  
+    END AS marketcap,
+    CASE WHEN perf_week_perc = '-' or perf_week_perc = '' THEN NULL ELSE CAST(REPLACE(perf_week_perc,'%','') AS FLOAT) END AS perf_week_perc,
+    CASE WHEN forwardpe = '-' or forwardpe = '' THEN NULL ELSE CAST(forwardpe AS FLOAT) END AS forwardpe,
+    CASE WHEN eps_nexty = '-' or eps_nexty = '' THEN NULL ELSE CAST(eps_nexty AS FLOAT) END AS eps_nexty,
+    CASE WHEN insidertrans_perc = '-' or insidertrans_perc = '' THEN NULL ELSE CAST(REPLACE(insidertrans_perc,'%','') AS FLOAT) END AS insidertrans_perc,
+    CASE 
+        WHEN length(shsfloat) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in shsfloat) > 1 
+                THEN cast(substring(shsfloat, 1, length(shsfloat)-1) as float)
+                ELSE cast(substring(shsfloat, 1, length(shsfloat)-1) as float)*1000
+            END  
+    END AS shsfloat,
+    CASE WHEN perf_month_perc = '-' or perf_month_perc = '' THEN NULL ELSE CAST(REPLACE(perf_month_perc,'%','') AS FLOAT) END AS perf_month_perc,
+    CASE 
+        WHEN length(income) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in income) > 1 
+                THEN cast(substring(income, 1, length(income)-1) as float)
+                ELSE cast(substring(income, 1, length(income)-1) as float)*1000
+            END  
+    END AS income,
+    CASE WHEN peg = '-' or peg = '' THEN NULL ELSE CAST(trim(peg) AS FLOAT) END AS peg,
+    CASE WHEN eps_nextq = '-' or eps_nextq = '' THEN NULL ELSE CAST(trim(eps_nextq) AS FLOAT) END AS eps_nextq,
+    CASE WHEN instown_perc = '-' or instown_perc = '' THEN NULL ELSE CAST(REPLACE(instown_perc,'%','') AS FLOAT) END AS instown_perc,
+    CASE WHEN shortfloat_perc = '-' or shortfloat_perc = '' THEN NULL ELSE CAST(REPLACE(shortfloat_perc,'%','') AS FLOAT) END AS shortfloat_perc,
+    CASE WHEN perf_quarter_perc = '-' or perf_quarter_perc = '' THEN NULL ELSE CAST(REPLACE(perf_quarter_perc,'%','') AS FLOAT) END AS perf_quarter_perc,
+    CASE 
+        WHEN length(sales) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in sales) > 1 
+                THEN cast(substring(sales, 1, length(sales)-1) as float)
+                ELSE cast(substring(sales, 1, length(sales)-1) as float)*1000
+            END  
+    END AS sales,
+    CASE WHEN ps = '-' or ps = '' THEN NULL ELSE CAST(trim(ps) AS FLOAT) END AS ps,
+    CASE WHEN eps_thisy_perc = '-' or eps_thisy_perc = '' THEN NULL ELSE CAST(REPLACE(eps_thisy_perc,'%','') AS FLOAT) END AS eps_thisy_perc,
+    CASE WHEN insttrans_perc = '-' or insttrans_perc = '' THEN NULL ELSE CAST(REPLACE(insttrans_perc,'%','') AS FLOAT) END AS insttrans_perc,
+    CASE WHEN shortratio = '-' or shortratio = '' THEN NULL ELSE CAST(trim(shortratio) AS FLOAT) END AS shortratio,
+    CASE WHEN perf_halfy_perc = '-' or perf_halfy_perc = '' THEN NULL ELSE CAST(REPLACE(perf_halfy_perc,'%','') AS FLOAT) END AS perf_halfy_perc,
+    CASE WHEN booksh = '-' or booksh = '' THEN NULL ELSE CAST(trim(booksh) AS FLOAT) END AS booksh,
+    CASE WHEN pb = '-' or pb = '' THEN NULL ELSE CAST(trim(pb) AS FLOAT) END AS pb,
+    CASE WHEN eps_nexty_perc = '-' or eps_nexty_perc = '' THEN NULL ELSE CAST(REPLACE(eps_nexty_perc,'%','') AS FLOAT) END AS eps_nexty_perc,
+    CASE WHEN roa_perc = '-' or roa_perc = '' THEN NULL ELSE CAST(REPLACE(roa_perc,'%','') AS FLOAT) END AS roa_perc,
+    CASE 
+        WHEN length(shortinterest) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('M' in shortinterest) > 1 
+                THEN cast(substring(shortinterest, 1, length(shortinterest)-1) as float)
+                ELSE cast(substring(shortinterest, 1, length(shortinterest)-1) as float)*1000
+            END  
+    END AS shortinterest,
+    CASE WHEN perf_year_perc = '-' or perf_year_perc = '' THEN NULL ELSE CAST(REPLACE(perf_year_perc,'%','') AS FLOAT) END AS perf_year_perc,
+    CASE WHEN cashsh = '-' or cashsh = '' THEN NULL ELSE CAST(trim(cashsh) AS FLOAT) END AS cashsh,
+    CASE WHEN pc = '-' or pc = '' THEN NULL ELSE CAST(trim(pc) AS FLOAT) END AS pc,
+    CASE WHEN eps_next5y_perc = '-' or eps_next5y_perc = '' THEN NULL ELSE CAST(REPLACE(eps_next5y_perc,'%','') AS FLOAT) END AS eps_next5y_perc,
+    CASE WHEN roe_perc = '-' or roe_perc = '' THEN NULL ELSE CAST(REPLACE(roe_perc,'%','') AS FLOAT) END AS roe_perc,
+    CASE WHEN w52_low_range = '-' or w52_low_range = '' THEN NULL ELSE CAST(trim(w52_low_range) AS FLOAT) END  as w52_low_range,
+    CASE WHEN w52_high_range = '-' or w52_high_range = '' THEN NULL ELSE CAST(trim(w52_high_range) AS FLOAT) END  as w52_high_range,
+    CASE WHEN perf_ytd_perc = '-' or perf_ytd_perc = '' THEN NULL ELSE CAST(REPLACE(perf_ytd_perc,'%','') AS FLOAT) END AS perf_ytd_perc,
+    dividend_est,
+    CASE WHEN dividend_est = '-' or dividend_est = '' THEN NULL ELSE CAST(substring(dividend_est, position('(' in dividend_est)+1, position('%' in dividend_est)-position('(' in dividend_est)-1) AS FLOAT) END AS dividend_est_perc,
+    CASE WHEN pfcf = '-' or pfcf = '' THEN NULL ELSE CAST(trim(pfcf) AS FLOAT) END AS pfcf,
+    CASE WHEN eps_past5y_perc = '-' or eps_past5y_perc = '' THEN NULL ELSE CAST(REPLACE(eps_past5y_perc,'%','') AS FLOAT) END AS eps_past5y_perc,
+    CASE WHEN roi_perc = '-' or roi_perc = '' THEN NULL ELSE CAST(REPLACE(roi_perc,'%','') AS FLOAT) END AS roi_perc,
+    CASE WHEN w52_high_perc = '-' or w52_high_perc = '' THEN NULL ELSE CAST(REPLACE(w52_high_perc,'%','') AS FLOAT) END AS w52_high_perc,
+    CASE WHEN w52_low_perc = '-' or w52_low_perc = '' THEN NULL ELSE CAST(REPLACE(w52_low_perc,'%','') AS FLOAT) END AS w52_low_perc,
+    CASE WHEN beta = '-' or beta = '' THEN NULL ELSE CAST(trim(beta) AS FLOAT) END AS beta,
+    dividend_ttm,
+    CASE WHEN dividend_ttm = '-' or dividend_ttm = '' THEN NULL ELSE CAST(substring(dividend_ttm, position('(' in dividend_ttm)+1, position('%' in dividend_ttm)-position('(' in dividend_ttm)-1) AS FLOAT) END AS dividend_ttm_perc,
+    CASE WHEN quickratio = '-' or quickratio = '' THEN NULL ELSE CAST(trim(quickratio) AS FLOAT) END AS quickratio,
+    CASE WHEN sales_past5y_perc = '-' or sales_past5y_perc = '' THEN NULL ELSE CAST(REPLACE(sales_past5y_perc,'%','') AS FLOAT) END AS sales_past5y_perc,
+    CASE WHEN grossmargin_perc = '-' or grossmargin_perc = '' THEN NULL ELSE CAST(REPLACE(grossmargin_perc,'%','') AS FLOAT) END AS grossmargin_perc,
+    CASE WHEN atr = '-' or atr = '' THEN NULL ELSE CAST(trim(atr) AS FLOAT) END AS atr,
+    CASE WHEN ex_div_date = '-' or ex_div_date = '' THEN NULL ELSE strftime(STRPTIME(ex_div_date, '%b %d, %Y'), '%Y%m%d') END AS ex_div_date,
+    CASE WHEN currentratio = '-' or currentratio = '' THEN NULL ELSE CAST(trim(currentratio) AS FLOAT) END AS currentratio,
+    CASE WHEN eps_yy_ttm_perc = '-' or eps_yy_ttm_perc = '' THEN NULL ELSE CAST(REPLACE(eps_yy_ttm_perc,'%','') AS FLOAT) END AS eps_yy_ttm_perc,
+    CASE WHEN opermargin_perc = '-' or opermargin_perc = '' THEN NULL ELSE CAST(REPLACE(opermargin_perc,'%','') AS FLOAT) END AS opermargin_perc,
+    CASE WHEN rsi = '-' or rsi = '' THEN NULL ELSE CAST(trim(rsi) AS FLOAT) END AS rsi,
+    CASE WHEN volatilityw_perc = '-' or volatilityw_perc = '' THEN NULL ELSE CAST(REPLACE(volatilityw_perc,'%','') AS FLOAT) END AS volatilityw_perc,
+    CASE WHEN volatilitym_perc = '-' or volatilitym_perc = '' THEN NULL ELSE CAST(REPLACE(volatilitym_perc,'%','') AS FLOAT) END AS volatilitym_perc,
+    employees,
+    CASE WHEN debteq = '-' or debteq = '' THEN NULL ELSE CAST(trim(debteq) AS FLOAT) END AS debteq,
+    CASE WHEN sales_yy_ttm_perc = '-' or sales_yy_ttm_perc = '' THEN NULL ELSE CAST(REPLACE(sales_yy_ttm_perc,'%','') AS FLOAT) END AS sales_yy_ttm_perc,
+    CASE WHEN profitmargin_perc = '-' or profitmargin_perc = '' THEN NULL ELSE CAST(REPLACE(profitmargin_perc,'%','') AS FLOAT) END AS profitmargin_perc,
+    CASE WHEN recom = '-' or recom = '' THEN NULL ELSE CAST(trim(recom) AS FLOAT) END AS recom,
+    CASE WHEN targetprice = '-' or targetprice = '' THEN NULL ELSE CAST(trim(targetprice) AS FLOAT) END AS targetprice,
+    option_short,
+    CASE WHEN lt_debt_eq_perc = '-' or lt_debt_eq_perc = '' THEN NULL ELSE CAST(trim(lt_debt_eq_perc) AS FLOAT) END AS lt_debt_eq_perc,
+    CASE WHEN eps_qq_perc = '-' or eps_qq_perc = '' THEN NULL ELSE CAST(REPLACE(eps_qq_perc,'%','') AS FLOAT) END AS eps_qq_perc,
+    CASE WHEN payout_perc = '-' or payout_perc = '' THEN NULL ELSE CAST(REPLACE(payout_perc,'%','') AS FLOAT) END AS payout_perc,
+    CASE WHEN relvolume = '-' or relvolume = '' THEN NULL ELSE CAST(trim(relvolume) AS FLOAT) END AS relvolume,
+    CASE WHEN prev_close = '-' or prev_close = '' THEN NULL ELSE CAST(trim(prev_close) AS FLOAT) END AS prev_close,
+    CASE WHEN sales_surprise_perc = '-' or sales_surprise_perc = '' THEN NULL ELSE CAST(REPLACE(sales_surprise_perc,'%','') AS FLOAT) END AS sales_surprise_perc,
+    CASE WHEN eps_surprise_perc = '-' or eps_surprise_perc = '' THEN NULL ELSE CAST(REPLACE(eps_surprise_perc,'%','') AS FLOAT) END AS eps_surprise_perc,
+    CASE WHEN sales_qq_perc = '-' or sales_qq_perc = '' THEN NULL ELSE CAST(REPLACE(sales_qq_perc,'%','') AS FLOAT) END AS sales_qq_perc,
+    earnings_date,
+    CASE 
+        WHEN length(avgvolume) <=2 
+        THEN NULL 
+        ELSE CASE 
+                WHEN position('K' in avgvolume) > 1 
+                THEN cast(substring(avgvolume, 1, length(avgvolume)-1) as float)/1000
+                WHEN position('M' in avgvolume) > 1 
+                THEN cast(substring(avgvolume, 1, length(avgvolume)-1) as float)
+                ELSE cast(substring(avgvolume, 1, length(avgvolume)-1) as float)*1000
+            END  
+    END AS avgvolume,
+    CASE WHEN price = '-' or price = '' THEN NULL ELSE CAST(trim(price) AS FLOAT) END AS price,
+    CASE WHEN sma20_perc = '-' or sma20_perc = '' THEN NULL ELSE CAST(REPLACE(sma20_perc,'%','') AS FLOAT) END AS sma20_perc,
+    CASE WHEN sma50_perc = '-' or sma50_perc = '' THEN NULL ELSE CAST(REPLACE(sma50_perc,'%','') AS FLOAT) END AS sma50_perc,
+    CASE WHEN sma200_perc = '-' or sma200_perc = '' THEN NULL ELSE CAST(REPLACE(sma200_perc,'%','') AS FLOAT) END AS sma200_perc,
+    volume,
+    CASE WHEN perf_day_perc = '-' or perf_day_perc = '' THEN NULL ELSE CAST(REPLACE(perf_day_perc,'%','') AS FLOAT) END AS perf_day_perc
+FROM read_parquet('R:\local_bucket\stage_store\finviz\fundamentals\*\*.parquet', hive_partitioning = True)
+WHERE file_version_date = '20250123';

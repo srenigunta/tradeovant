@@ -1,0 +1,316 @@
+schemas:
+  screener:
+    - name: atr
+      type: string
+      nullable: true
+    - name: bollinger_risk
+      type: string
+      nullable: true
+    - name: bollinger_width
+      type: string
+      nullable: true
+    - name: c
+      type: string
+      nullable: true
+    - name: c_liq
+      type: string
+      nullable: true
+    - name: change_1y
+      type: string
+      nullable: true
+    - name: change_30d
+      type: string
+      nullable: true
+    - name: change_7d
+      type: string
+      nullable: true
+    - name: co_name
+      type: string
+      nullable: true
+    - name: cr
+      type: string
+      nullable: true
+    - name: d_ex_d
+      type: string
+      nullable: true
+    - name: d_pay_d
+      type: string
+      nullable: true
+    - name: d_pay_r
+      type: string
+      nullable: true
+    - name: da
+      type: string
+      nullable: true
+    - name: date
+      type: string
+      nullable: true
+    - name: dc_12_in
+      type: string
+      nullable: true
+    - name: dc_3_in
+      type: string
+      nullable: true
+    - name: deathcross_3
+      type: string
+      nullable: true
+    - name: debt_equity_ratio
+      type: string
+      nullable: true
+    - name: dividend_yield
+      type: string
+      nullable: true
+    - name: dy_tr
+      type: string
+      nullable: true
+    - name: earnings_date
+      type: string
+      nullable: true
+    - name: earnings_date_in
+      type: string
+      nullable: true
+    - name: eps_growth
+      type: string
+      nullable: true
+    - name: f_db12
+      type: string
+      nullable: true
+    - name: f_db3
+      type: string
+      nullable: true
+    - name: f_dt12
+      type: string
+      nullable: true
+    - name: f_dt3
+      type: string
+      nullable: true
+    - name: f_dtb_12
+      type: string
+      nullable: true
+    - name: f_dtb_3
+      type: string
+      nullable: true
+    - name: gc_12_in
+      type: string
+      nullable: true
+    - name: gc_3_in
+      type: string
+      nullable: true
+    - name: goldencross_3
+      type: string
+      nullable: true
+    - name: id
+      type: string
+      nullable: true
+    - name: industry
+      type: string
+      nullable: true
+    - name: insider_power
+      type: string
+      nullable: true
+    - name: mkt_cap
+      type: string
+      nullable: true
+    - name: mv100
+      type: string
+      nullable: true
+    - name: mv100_p_s
+      type: string
+      nullable: true
+    - name: mv100_p_s_d
+      type: string
+      nullable: true
+    - name: mv12
+      type: string
+      nullable: true
+    - name: mv200
+      type: string
+      nullable: true
+    - name: mv21
+      type: string
+      nullable: true
+    - name: mv21_mv100_s
+      type: string
+      nullable: true
+    - name: mv21_mv100_s_d
+      type: string
+      nullable: true
+    - name: mv21_p_s
+      type: string
+      nullable: true
+    - name: mv21_p_s_d
+      type: string
+      nullable: true
+    - name: mv26
+      type: string
+      nullable: true
+    - name: mv35
+      type: string
+      nullable: true
+    - name: mv35_mv100_s
+      type: string
+      nullable: true
+    - name: mv35_p_s
+      type: string
+      nullable: true
+    - name: mv35_p_s_d
+      type: string
+      nullable: true
+    - name: mv50
+      type: string
+      nullable: true
+    - name: mv7
+      type: string
+      nullable: true
+    - name: mv7_mv35_s
+      type: string
+      nullable: true
+    - name: mv7_mv35_s_d
+      type: string
+      nullable: true
+    - name: mv7_p_s
+      type: string
+      nullable: true
+    - name: mv7_p_s_d
+      type: string
+      nullable: true
+    - name: net_profit_margin
+      type: string
+      nullable: true
+    - name: pb_ratio
+      type: string
+      nullable: true
+    - name: percentage
+      type: string
+      nullable: true
+    - name: piotroski_score
+      type: string
+      nullable: true
+    - name: pivotdate_short
+      type: string
+      nullable: true
+    - name: price
+      type: string
+      nullable: true
+    - name: price_to_sales
+      type: string
+      nullable: true
+    - name: prices_compared
+      type: string
+      nullable: true
+    - name: return_on_assets
+      type: string
+      nullable: true
+    - name: return_on_equity_employed
+      type: string
+      nullable: true
+    - name: revenue_growth_rate
+      type: string
+      nullable: true
+    - name: rsi14
+      type: string
+      nullable: true
+    - name: rsi21
+      type: string
+      nullable: true
+    - name: score
+      type: string
+      nullable: true
+    - name: score_3
+      type: string
+      nullable: true
+    - name: score_3_signal
+      type: string
+      nullable: true
+    - name: sector
+      type: string
+      nullable: true
+    - name: signal_duration
+      type: string
+      nullable: true
+    - name: stop_loss
+      type: string
+      nullable: true
+    - name: symbol
+      type: string
+      nullable: true
+    - name: tick
+      type: string
+      nullable: true
+    - name: tickerId
+      type: string
+      nullable: true
+    - name: trailing_pe
+      type: string
+      nullable: true
+    - name: trend_12
+      type: string
+      nullable: true
+    - name: trend_3
+      type: string
+      nullable: true
+    - name: trend_position
+      type: string
+      nullable: true
+    - name: trend_position_12
+      type: string
+      nullable: true
+    - name: type
+      type: string
+      nullable: true
+    - name: volume
+      type: string
+      nullable: true
+
+  trending:
+    - name: symbol
+      type: string
+      nullable: true
+    - name: logoUrl
+      type: string
+      nullable: true
+    - name: score
+      type: string
+      nullable: true
+    - name: date
+      type: string
+      nullable: true
+    - name: co_name
+      type: string
+      nullable: true
+    - name: urlToComment
+      type: string
+      nullable: true
+    - name: urlJsonChartMain
+      type: string
+      nullable: true
+    - name: priceFormatted
+      type: string
+      nullable: true
+    - name: priceRaw
+      type: string
+      nullable: true
+    - name: change24h
+      type: string
+      nullable: true
+    - name: volumeFormatted
+      type: string
+      nullable: true
+    - name: volumeRaw
+      type: string
+      nullable: true
+    - name: marketCapFormatted
+      type: string
+      nullable: true
+    - name: marketCapRaw
+      type: string
+      nullable: true
+    - name: change7d
+      type: string
+      nullable: true
+    - name: changeMonth
+      type: string
+      nullable: true
+    - name: pos
+      type: string
+      nullable: true

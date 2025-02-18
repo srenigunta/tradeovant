@@ -1,0 +1,48 @@
+source:
+  future_earnings:
+    bucket: "raw_store"
+    sub_path: "stockcharts/earnings/future_earnings/json"
+    pattern: "future_earnings_*.json"
+    columns_map:
+      EarningsDate: "Upcoming_EarningsDate"
+      EarningsType: "Upcoming_EarningsType"
+      EstimatedSales: "Upcoming_EstimatedSales"
+      EstimatedNetIncome: "Upcoming_EstimatedNetIncome"
+      EstimatedEPS: "Upcoming_EstimatedEPS"
+      Symbol: "Symbol"
+  reported_earnings:
+    bucket: "raw_store"
+    sub_path: "stockcharts/earnings/reported_earnings/json"
+    pattern: "reported_earnings_*.json"
+    columns:
+      - Symbol
+      - ActualNetIncome
+      - ActualEPS
+      - EstimatedNetIncome
+      - FiscalPeriod
+      - EstimatedEPS
+      - EarningsDate
+      - EstimatedSales
+      - ActualSales
+target:
+  bucket: "stage_store"
+  base_path: "stockcharts/earnings"
+  pattern: "schrts_earnings_{date}.parquet"
+  columns:
+    - Symbol
+    - ActualNetIncome
+    - ActualEPS
+    - EstimatedNetIncome
+    - FiscalPeriod
+    - EstimatedEPS
+    - EarningsDate
+    - EstimatedSales
+    - ActualSales
+    - Upcoming_EarningsDate
+    - Upcoming_EarningsType
+    - Upcoming_EstimatedSales
+    - Upcoming_EstimatedNetIncome
+    - Upcoming_EstimatedEPS
+processing:
+  log_level: "INFO"
+  delta_tracking_file: "processed_files.txt"

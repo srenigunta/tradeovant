@@ -1,0 +1,152 @@
+headers:
+  authority: stockcharts.com,
+  method: GET,
+  scheme: https,
+  accept: application/json, text/javascript, */*; q=0.01,
+  accept-encoding: gzip, deflate, br, zstd,
+  accept-language: en-US,en;q=0.9,
+  cache-control: no-cache,
+  pragma: no-cache,
+  sec-fetch-dest: empty,
+  sec-fetch-mode: cors,
+  sec-fetch-site: same-origin,
+  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0,
+  x-requested-with: XMLHttpRequest
+
+earnings:
+  raw_sub_path: "raw_store/stockcharts/earnings"
+  stage_sub_path: "stage_store/stockcharts/earnings"
+  bronze_sub_path: "bronze_store/stockcharts/earnings"
+  partition_column: "file_version_date"
+  api_details:
+    - api_name: reported_earnings
+      referral_url: https://stockcharts.com/freecharts/reported-earnings.html
+      api_prefix: https://stockcharts.com/json/api?
+      api_endpoint: cmd=get-reported-earnings
+      api_child_endpoint: None
+
+    - api_name: future_earnings
+      referral_url: https://stockcharts.com/freecharts/upcoming-earnings.html
+      api_prefix: https://stockcharts.com/json/api?
+      api_endpoint: cmd=get-future-earnings
+      api_child_endpoint: None
+
+sctr_reports:
+  raw_sub_path: "raw_store/stockcharts/sctr_reports"
+  stage_sub_path: "stage_store/stockcharts/sctr_reports"
+  bronze_sub_path: "bronze_store/stockcharts/sctr_reports"
+  partition_column: "file_version_date"
+  api_details:
+    - api_name: largecap_sctr_report
+      referral_url: https://stockcharts.com/freecharts/sctr.html
+      api_prefix: https://stockcharts.com/j-sum/sum?
+      api_endpoint: cmd=sctr&view=L
+      api_child_endpoint: None
+
+    - api_name: midcap_sctr_report
+      referral_url: https://stockcharts.com/freecharts/sctr.html
+      api_prefix: https://stockcharts.com/j-sum/sum?
+      api_endpoint: cmd=sctr&view=M
+      api_child_endpoint: None
+
+    - api_name: smallcap_sctr_report
+      referral_url: https://stockcharts.com/freecharts/sctr.html
+      api_prefix: https://stockcharts.com/j-sum/sum?
+      api_endpoint: cmd=sctr&view=S
+      api_child_endpoint: None
+
+    - api_name: etf_sctr_report
+      referral_url: https://stockcharts.com/freecharts/sctr.html
+      api_prefix: https://stockcharts.com/j-sum/sum?
+      api_endpoint: cmd=sctr&view=E
+      api_child_endpoint: None
+
+sector_summary:
+  raw_sub_path: "raw_store/stockcharts/sector_summary"
+  stage_sub_path: "stage_store/stockcharts/sector_summary"
+  bronze_sub_path: "bronze_store/stockcharts/sector_summary"
+  partition_column: "file_version_date"
+  api_details:
+    - api_name: spdr_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group
+      api_endpoint: SECTOR_SPDR
+      api_child_endpoint: None
+
+    - api_name: xlc_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLC
+      api_child_endpoint: SECTOR_DJUSAV,SECTOR_DJUSBC,SECTOR_DJUSFC,SECTOR_DJUSNS,SECTOR_DJUSPB,SECTOR_DJUSWC
+
+    - api_name: xlre_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLRE
+      api_child_endpoint: SECTOR_DJUSDT,SECTOR_DJUSEH,SECTOR_DJUSES,SECTOR_DJUSHL,SECTOR_DJUSIO,SECTOR_DJUSMR,SECTOR_DJUSRL,SECTOR_DJUSRN,SECTOR_DJUSSR
+
+    - api_name: xlv_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLV
+      api_child_endpoint: SECTOR_DJUSBT,SECTOR_DJUSAM,SECTOR_DJUSHP,SECTOR_DJUSMS,SECTOR_DJUSPR
+
+    - api_name: xly_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLY
+      api_child_endpoint: SECTOR_DJUSAT,SECTOR_DJUSAU,SECTOR_DJUSBE,SECTOR_DJUSCA,SECTOR_DJUSCF,SECTOR_DJUSCS,SECTOR_DJUSFH,SECTOR_DJUSHB,SECTOR_DJUSHD,SECTOR_DJUSHI,SECTOR_DJUSFT,SECTOR_DJUSLG,SECTOR_DJUSRA,SECTOR_DJUSRB,SECTOR_DJUSRS,SECTOR_DJUSRU,SECTOR_DJUSRP,SECTOR_DJUSRQ,SECTOR_DJUSTT,SECTOR_DJUSTY,SECTOR_DWCTIR
+
+    - api_name: xlf_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLF
+      api_child_endpoint: SECTOR_DJUSSB,SECTOR_DJUSSF,SECTOR_DJUSSP,SECTOR_DJUSMF,SECTOR_DJUSIB,SECTOR_DJUSIF,SECTOR_DJUSIL,SECTOR_DJUSIP,SECTOR_DJUSIU,SECTOR_DJUSBK,SECTOR_DJUSAG,SECTOR_DJUSFA
+
+    - api_name: xlk_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLK
+      api_child_endpoint: SECTOR_DJUSAI,SECTOR_DJUSCR,SECTOR_DJUSCT,SECTOR_DJUSDV,SECTOR_DJUSEC,SECTOR_DJUSSW,SECTOR_DJUSSC,SECTOR_DWCREE
+
+    - api_name: xlu_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLU
+      api_child_endpoint: SECTOR_DJUSWU,SECTOR_DJUSVE,SECTOR_DJUSMU,SECTOR_DJUSGU
+
+    - api_name: xli_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLI
+      api_child_endpoint: SECTOR_DJUSPC,SECTOR_DJUSMT,SECTOR_DJUSHR,SECTOR_DJUSHV,SECTOR_DJUSIV,SECTOR_DJUSID,SECTOR_DJUSAR,SECTOR_DJUSAS,SECTOR_DJUSAF,SECTOR_DJUSBD,SECTOR_DJUSFE,SECTOR_DJUSDN,SECTOR_DJUSDS,SECTOR_DJUSTK,SECTOR_DJUSRR
+
+    - api_name: xlb_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLB
+      api_child_endpoint: SECTOR_DJUSCX,SECTOR_DJUSST,SECTOR_DJUSCP,SECTOR_DJUSAL,SECTOR_DJUSCC,SECTOR_DJUSMG,SECTOR_DJUSNF,SECTOR_DJUSPM,SECTOR_DWCPAP
+
+    - api_name: xlp_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLP
+      api_child_endpoint: SECTOR_DJUSVN,SECTOR_DJUSTB,SECTOR_DJUSSD,SECTOR_DJUSRD,SECTOR_DJUSHN,SECTOR_DJUSFP,SECTOR_DJUSFD,SECTOR_DJUSCM,SECTOR_DJUSDB,SECTOR_DJUSGT
+
+    - api_name: xle_sector_summary
+      referral_url: https://stockcharts.com/freecharts/sectorsummary.html
+      api_prefix: https://stockcharts.com/j-sum/sum?cmd=perf&group=
+      api_endpoint: XLE
+      api_child_endpoint: SECTOR_DWCCOA,SECTOR_DJUSOI,SECTOR_DJUSOL,SECTOR_DJUSOS,SECTOR_DJUSPL
+
+market_summary:
+  raw_sub_path: "raw_store/stockcharts/market_summary"
+  stage_sub_path: "stage_store/stockcharts/market_summary"
+  bronze_sub_path: "bronze_store/stockcharts/market_summary"
+  partition_column: "file_version_date"
+  api_details:
+    - api_name: spdr_market_summary
+      referral_url: https://stockcharts.com/freecharts/marketsummary.html?v=E
+      api_prefix: https://stockcharts.com/j-sum/sum?
+      api_endpoint: cmd=msummary&view=E
+      api_child_endpoint: None

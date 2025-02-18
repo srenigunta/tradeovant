@@ -1,0 +1,67 @@
+datasets:
+  options_flow:
+    raw_sub_path: "raw_store/whales/optionsflow/parquet"
+    stage_sub_path: "stage_store/whales/optionsflow"
+    partition_column: "file_version_date"
+    pre_select: |
+      with chain_cnts
+      as
+      (SELECT file_version_date as version_date, option_chain_id as chain_id, SUM(cast(size as integer)) AS tot_cnt, MAX(cast(open_interest as integer)) AS ointrst
+    pre_grouping: |
+      group by version_date, chain_id
+      having (tot_cnt >= 100 or ointrst >= 100)
+      )
+    core_select: |
+      SELECT
+        file_version_date,
+        underlying_symbol,
+        option_chain_id,
+        coalesce(side, 'all') as side,
+        option_type,
+        expiry,
+        round(try_cast(strike as double), 2) as strike,
+        coalesce(case 
+            when upstream_condition_detail in ('mlet', 'mlat', 'mlct', 'tlct', 'tlft', 'tlet', 'tlat') then 'auto_multileg'
+            when upstream_condition_detail in ('slan', 'slai', 'mesl', 'slcn', 'slft', 'mfsl') then 'sweep'
+            when upstream_condition_detail in ('isoi', 'mlft') then 'manual_multileg'
+            else 'standard'
+        end, 'all') as option_tx_type,
+        -- 1) Basic trade aggregations:
+        COUNT(*) AS trade_count,
+        SUM(cast(size as bigint)) AS total_contracts,
+        SUM(cast(premium as bigint)) AS total_premium,
+        -- 2) Volume & Open Interest
+        MAX(cast(open_interest as bigint)) AS open_interest, 
+        -- 3) Price stats:
+        MIN(cast(price as double)) AS min_price,
+        MAX(cast(price as double)) AS max_price,
+        round(SUM(cast(price as double) * cast(size as bigint)) / NULLIF(SUM(cast(size as bigint)), 0), 2) AS wtd_avg_price,
+        -- 4) Weighted-average implied vol & greeks:
+        round(SUM(try_cast(implied_volatility as double) * cast(size as bigint)) / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_iv,
+        round(SUM(try_cast(delta as double) * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_delta,
+        round(SUM(try_cast(gamma as double) * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_gamma,
+        round(SUM(try_cast(vega as double)  * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_vega,
+        round(SUM(try_cast(theta as double) * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_theta,
+        round(SUM(try_cast(rho as double) * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_rho,
+        round(SUM(try_cast(theo as double) * cast(size as bigint))             / NULLIF(SUM(cast(size as bigint)), 0), 4) AS wtd_avg_theo
+    core_grouping: |
+      GROUP BY
+      	file_version_date,
+      	option_chain_id, 
+        underlying_symbol,
+        option_type,
+        expiry,
+        strike,
+        rollup(side, option_tx_type)
+      ORDER BY
+        underlying_symbol,
+        option_chain_id,
+        expiry,
+        strike, 
+      	option_tx_type,
+      	side 
+        nulls last
+    dataset_join: |
+      inner join chain_cnts ct
+      on ct.chain_id = option_chain_id
+      and ct.version_date = file_version_date

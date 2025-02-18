@@ -1,0 +1,567 @@
+2025-02-18 16:06:27,526 - __main__ - INFO - Config file loaded...
+2025-02-18 16:06:28,286 - botocore.credentials - INFO - Found credentials in environment variables.
+2025-02-18 16:06:28,776 - __main__ - INFO - Storage initiated...
+2025-02-18 16:06:28,776 - __main__ - INFO - Processing category: earnings
+2025-02-18 16:06:28,776 - __main__ - INFO - Processing reported_earnings - cmd=get-reported-earnings - https://stockcharts.com/json/api?cmd=get-reported-earnings
+2025-02-18 16:06:28,780 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:29,402 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/earnings\reported_earnings/json/reported_earnings_20250218.json
+2025-02-18 16:06:29,403 - __main__ - INFO - Successfully stored: reported_earnings/json/reported_earnings_20250218.json
+2025-02-18 16:06:29,403 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:06:36,404 - __main__ - INFO - Processing future_earnings - cmd=get-future-earnings - https://stockcharts.com/json/api?cmd=get-future-earnings
+2025-02-18 16:06:36,407 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:37,017 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/earnings\future_earnings/json/future_earnings_20250218.json
+2025-02-18 16:06:37,017 - __main__ - INFO - Successfully stored: future_earnings/json/future_earnings_20250218.json
+2025-02-18 16:06:37,018 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:06:40,021 - __main__ - INFO - Processing category: sctr_reports
+2025-02-18 16:06:40,022 - __main__ - INFO - Processing largecap_sctr_report - cmd=sctr&view=L - https://stockcharts.com/j-sum/sum?cmd=sctr&view=L
+2025-02-18 16:06:40,025 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:40,348 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sctr_reports\largecap_sctr_report/json/largecap_sctr_report_20250218.json
+2025-02-18 16:06:40,349 - __main__ - INFO - Successfully stored: largecap_sctr_report/json/largecap_sctr_report_20250218.json
+2025-02-18 16:06:40,349 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:06:44,350 - __main__ - INFO - Processing midcap_sctr_report - cmd=sctr&view=M - https://stockcharts.com/j-sum/sum?cmd=sctr&view=M
+2025-02-18 16:06:44,353 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:44,793 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sctr_reports\midcap_sctr_report/json/midcap_sctr_report_20250218.json
+2025-02-18 16:06:44,793 - __main__ - INFO - Successfully stored: midcap_sctr_report/json/midcap_sctr_report_20250218.json
+2025-02-18 16:06:44,793 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:06:48,795 - __main__ - INFO - Processing smallcap_sctr_report - cmd=sctr&view=S - https://stockcharts.com/j-sum/sum?cmd=sctr&view=S
+2025-02-18 16:06:48,798 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:49,382 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sctr_reports\smallcap_sctr_report/json/smallcap_sctr_report_20250218.json
+2025-02-18 16:06:49,382 - __main__ - INFO - Successfully stored: smallcap_sctr_report/json/smallcap_sctr_report_20250218.json
+2025-02-18 16:06:49,383 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:06:56,383 - __main__ - INFO - Processing etf_sctr_report - cmd=sctr&view=E - https://stockcharts.com/j-sum/sum?cmd=sctr&view=E
+2025-02-18 16:06:56,387 - responses - INFO - request.allowed-passthru
+2025-02-18 16:06:56,915 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sctr_reports\etf_sctr_report/json/etf_sctr_report_20250218.json
+2025-02-18 16:06:56,915 - __main__ - INFO - Successfully stored: etf_sctr_report/json/etf_sctr_report_20250218.json
+2025-02-18 16:06:56,915 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:07:02,918 - __main__ - INFO - Processing category: sector_summary
+2025-02-18 16:07:02,919 - __main__ - INFO - Processing spdr_sector_summary - SECTOR_SPDR - https://stockcharts.com/j-sum/sum?cmd=perf&groupSECTOR_SPDR
+2025-02-18 16:07:02,922 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:03,201 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\spdr_sector_summary/json/spdr_sector_summary_20250218.json
+2025-02-18 16:07:03,202 - __main__ - INFO - Successfully stored: spdr_sector_summary/json/spdr_sector_summary_20250218.json
+2025-02-18 16:07:03,202 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:07:08,203 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSAV - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAV
+2025-02-18 16:07:08,206 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:08,686 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSAV_20250218.json
+2025-02-18 16:07:08,687 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSAV_20250218.json
+2025-02-18 16:07:08,687 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:07:12,688 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSBC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSBC
+2025-02-18 16:07:12,691 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:13,276 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSBC_20250218.json
+2025-02-18 16:07:13,276 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSBC_20250218.json
+2025-02-18 16:07:13,276 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:07:17,278 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSFC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFC
+2025-02-18 16:07:17,282 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:17,719 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSFC_20250218.json
+2025-02-18 16:07:17,720 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSFC_20250218.json
+2025-02-18 16:07:17,721 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:07:20,723 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSNS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSNS
+2025-02-18 16:07:20,726 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:21,234 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSNS_20250218.json
+2025-02-18 16:07:21,234 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSNS_20250218.json
+2025-02-18 16:07:21,234 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:07:27,235 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSPB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSPB
+2025-02-18 16:07:27,238 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:27,620 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSPB_20250218.json
+2025-02-18 16:07:27,621 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSPB_20250218.json
+2025-02-18 16:07:27,621 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:07:33,622 - __main__ - INFO - Processing xlc_sector_summary - SECTOR_DJUSWC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSWC
+2025-02-18 16:07:33,625 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:34,104 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlc_sector_summary/json/XLC_SECTOR_DJUSWC_20250218.json
+2025-02-18 16:07:34,106 - __main__ - INFO - Successfully stored: xlc_sector_summary/json/XLC_SECTOR_DJUSWC_20250218.json
+2025-02-18 16:07:34,106 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:07:40,107 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSDT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSDT
+2025-02-18 16:07:40,108 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:40,463 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSDT_20250218.json
+2025-02-18 16:07:40,464 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSDT_20250218.json
+2025-02-18 16:07:40,464 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:07:47,465 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSEH - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSEH
+2025-02-18 16:07:47,469 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:47,923 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSEH_20250218.json
+2025-02-18 16:07:47,923 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSEH_20250218.json
+2025-02-18 16:07:47,923 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:07:51,925 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSES - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSES
+2025-02-18 16:07:51,928 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:52,339 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSES_20250218.json
+2025-02-18 16:07:52,339 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSES_20250218.json
+2025-02-18 16:07:52,340 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:07:55,341 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSHL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHL
+2025-02-18 16:07:55,344 - responses - INFO - request.allowed-passthru
+2025-02-18 16:07:55,711 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSHL_20250218.json
+2025-02-18 16:07:55,711 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSHL_20250218.json
+2025-02-18 16:07:55,712 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:07:59,712 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSIO - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIO
+2025-02-18 16:07:59,715 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:00,209 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSIO_20250218.json
+2025-02-18 16:08:00,209 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSIO_20250218.json
+2025-02-18 16:08:00,209 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:08:05,211 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSMR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMR
+2025-02-18 16:08:05,214 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:05,585 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSMR_20250218.json
+2025-02-18 16:08:05,585 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSMR_20250218.json
+2025-02-18 16:08:05,586 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:08:09,587 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSRL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRL
+2025-02-18 16:08:09,590 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:10,044 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSRL_20250218.json
+2025-02-18 16:08:10,045 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSRL_20250218.json
+2025-02-18 16:08:10,045 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:08:17,046 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSRN - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRN
+2025-02-18 16:08:17,048 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:17,413 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSRN_20250218.json
+2025-02-18 16:08:17,413 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSRN_20250218.json
+2025-02-18 16:08:17,414 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:08:22,415 - __main__ - INFO - Processing xlre_sector_summary - SECTOR_DJUSSR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSR
+2025-02-18 16:08:22,418 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:22,855 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlre_sector_summary/json/XLRE_SECTOR_DJUSSR_20250218.json
+2025-02-18 16:08:22,855 - __main__ - INFO - Successfully stored: xlre_sector_summary/json/XLRE_SECTOR_DJUSSR_20250218.json
+2025-02-18 16:08:22,855 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:08:26,857 - __main__ - INFO - Processing xlv_sector_summary - SECTOR_DJUSBT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSBT
+2025-02-18 16:08:26,860 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:29,378 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlv_sector_summary/json/XLV_SECTOR_DJUSBT_20250218.json
+2025-02-18 16:08:29,378 - __main__ - INFO - Successfully stored: xlv_sector_summary/json/XLV_SECTOR_DJUSBT_20250218.json
+2025-02-18 16:08:29,378 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:08:34,379 - __main__ - INFO - Processing xlv_sector_summary - SECTOR_DJUSAM - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAM
+2025-02-18 16:08:34,382 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:35,343 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlv_sector_summary/json/XLV_SECTOR_DJUSAM_20250218.json
+2025-02-18 16:08:35,343 - __main__ - INFO - Successfully stored: xlv_sector_summary/json/XLV_SECTOR_DJUSAM_20250218.json
+2025-02-18 16:08:35,343 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:08:40,345 - __main__ - INFO - Processing xlv_sector_summary - SECTOR_DJUSHP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHP
+2025-02-18 16:08:40,348 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:40,939 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlv_sector_summary/json/XLV_SECTOR_DJUSHP_20250218.json
+2025-02-18 16:08:40,939 - __main__ - INFO - Successfully stored: xlv_sector_summary/json/XLV_SECTOR_DJUSHP_20250218.json
+2025-02-18 16:08:40,939 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:08:46,941 - __main__ - INFO - Processing xlv_sector_summary - SECTOR_DJUSMS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMS
+2025-02-18 16:08:46,944 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:47,500 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlv_sector_summary/json/XLV_SECTOR_DJUSMS_20250218.json
+2025-02-18 16:08:47,500 - __main__ - INFO - Successfully stored: xlv_sector_summary/json/XLV_SECTOR_DJUSMS_20250218.json
+2025-02-18 16:08:47,500 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:08:54,501 - __main__ - INFO - Processing xlv_sector_summary - SECTOR_DJUSPR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSPR
+2025-02-18 16:08:54,504 - responses - INFO - request.allowed-passthru
+2025-02-18 16:08:56,206 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlv_sector_summary/json/XLV_SECTOR_DJUSPR_20250218.json
+2025-02-18 16:08:56,206 - __main__ - INFO - Successfully stored: xlv_sector_summary/json/XLV_SECTOR_DJUSPR_20250218.json
+2025-02-18 16:08:56,207 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:09:02,208 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSAT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAT
+2025-02-18 16:09:02,211 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:02,579 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSAT_20250218.json
+2025-02-18 16:09:02,579 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSAT_20250218.json
+2025-02-18 16:09:02,580 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:09:09,581 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSAU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAU
+2025-02-18 16:09:09,584 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:09,971 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSAU_20250218.json
+2025-02-18 16:09:09,971 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSAU_20250218.json
+2025-02-18 16:09:09,972 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:09:13,974 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSBE - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSBE
+2025-02-18 16:09:13,977 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:14,381 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSBE_20250218.json
+2025-02-18 16:09:14,382 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSBE_20250218.json
+2025-02-18 16:09:14,382 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:09:17,383 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSCA - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCA
+2025-02-18 16:09:17,385 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:17,806 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSCA_20250218.json
+2025-02-18 16:09:17,807 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSCA_20250218.json
+2025-02-18 16:09:17,807 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:09:23,808 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSCF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCF
+2025-02-18 16:09:23,811 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:24,361 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSCF_20250218.json
+2025-02-18 16:09:24,362 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSCF_20250218.json
+2025-02-18 16:09:24,362 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:09:27,363 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSCS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCS
+2025-02-18 16:09:27,367 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:27,856 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSCS_20250218.json
+2025-02-18 16:09:27,857 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSCS_20250218.json
+2025-02-18 16:09:27,857 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:09:30,858 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSFH - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFH
+2025-02-18 16:09:30,862 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:31,239 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSFH_20250218.json
+2025-02-18 16:09:31,240 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSFH_20250218.json
+2025-02-18 16:09:31,240 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:09:34,241 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSHB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHB
+2025-02-18 16:09:34,244 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:34,612 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSHB_20250218.json
+2025-02-18 16:09:34,612 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSHB_20250218.json
+2025-02-18 16:09:34,613 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:09:39,614 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSHD - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHD
+2025-02-18 16:09:39,617 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:40,077 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSHD_20250218.json
+2025-02-18 16:09:40,077 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSHD_20250218.json
+2025-02-18 16:09:40,077 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:09:46,079 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSHI - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHI
+2025-02-18 16:09:46,081 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:46,368 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSHI_20250218.json
+2025-02-18 16:09:46,368 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSHI_20250218.json
+2025-02-18 16:09:46,368 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:09:53,369 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSFT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFT
+2025-02-18 16:09:53,372 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:53,711 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSFT_20250218.json
+2025-02-18 16:09:53,712 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSFT_20250218.json
+2025-02-18 16:09:53,712 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:09:57,713 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSLG - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSLG
+2025-02-18 16:09:57,716 - responses - INFO - request.allowed-passthru
+2025-02-18 16:09:58,057 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSLG_20250218.json
+2025-02-18 16:09:58,058 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSLG_20250218.json
+2025-02-18 16:09:58,058 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:10:04,059 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRA - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRA
+2025-02-18 16:10:04,062 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:04,447 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRA_20250218.json
+2025-02-18 16:10:04,448 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRA_20250218.json
+2025-02-18 16:10:04,448 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:10:10,450 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRB
+2025-02-18 16:10:10,453 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:10,864 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRB_20250218.json
+2025-02-18 16:10:10,864 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRB_20250218.json
+2025-02-18 16:10:10,865 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:10:16,865 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRS
+2025-02-18 16:10:16,868 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:17,337 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRS_20250218.json
+2025-02-18 16:10:17,338 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRS_20250218.json
+2025-02-18 16:10:17,338 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:10:20,339 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRU
+2025-02-18 16:10:20,342 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:20,760 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRU_20250218.json
+2025-02-18 16:10:20,761 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRU_20250218.json
+2025-02-18 16:10:20,761 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:10:23,763 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRP
+2025-02-18 16:10:23,766 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:24,220 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRP_20250218.json
+2025-02-18 16:10:24,221 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRP_20250218.json
+2025-02-18 16:10:24,221 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:10:27,223 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSRQ - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRQ
+2025-02-18 16:10:27,226 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:27,638 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSRQ_20250218.json
+2025-02-18 16:10:27,639 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSRQ_20250218.json
+2025-02-18 16:10:27,639 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:10:32,640 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSTT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSTT
+2025-02-18 16:10:32,643 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:33,002 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSTT_20250218.json
+2025-02-18 16:10:33,002 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSTT_20250218.json
+2025-02-18 16:10:33,002 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:10:37,004 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DJUSTY - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSTY
+2025-02-18 16:10:37,007 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:37,352 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DJUSTY_20250218.json
+2025-02-18 16:10:37,353 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DJUSTY_20250218.json
+2025-02-18 16:10:37,353 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:10:41,354 - __main__ - INFO - Processing xly_sector_summary - SECTOR_DWCTIR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DWCTIR
+2025-02-18 16:10:41,357 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:41,763 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xly_sector_summary/json/XLY_SECTOR_DWCTIR_20250218.json
+2025-02-18 16:10:41,764 - __main__ - INFO - Successfully stored: xly_sector_summary/json/XLY_SECTOR_DWCTIR_20250218.json
+2025-02-18 16:10:41,764 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:10:48,766 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSSB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSB
+2025-02-18 16:10:48,770 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:49,241 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSSB_20250218.json
+2025-02-18 16:10:49,241 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSSB_20250218.json
+2025-02-18 16:10:49,242 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:10:54,243 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSSF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSF
+2025-02-18 16:10:54,246 - responses - INFO - request.allowed-passthru
+2025-02-18 16:10:54,647 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSSF_20250218.json
+2025-02-18 16:10:54,647 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSSF_20250218.json
+2025-02-18 16:10:54,648 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:11:01,650 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSSP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSP
+2025-02-18 16:11:01,654 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:02,160 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSSP_20250218.json
+2025-02-18 16:11:02,160 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSSP_20250218.json
+2025-02-18 16:11:02,160 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:11:09,162 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSMF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMF
+2025-02-18 16:11:09,165 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:09,606 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSMF_20250218.json
+2025-02-18 16:11:09,607 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSMF_20250218.json
+2025-02-18 16:11:09,607 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:11:16,609 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSIB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIB
+2025-02-18 16:11:16,612 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:16,988 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSIB_20250218.json
+2025-02-18 16:11:16,989 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSIB_20250218.json
+2025-02-18 16:11:16,989 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:11:19,991 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSIF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIF
+2025-02-18 16:11:19,993 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:20,296 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSIF_20250218.json
+2025-02-18 16:11:20,296 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSIF_20250218.json
+2025-02-18 16:11:20,297 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:11:23,299 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSIL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIL
+2025-02-18 16:11:23,303 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:23,664 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSIL_20250218.json
+2025-02-18 16:11:23,664 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSIL_20250218.json
+2025-02-18 16:11:23,665 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:11:27,666 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSIP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIP
+2025-02-18 16:11:27,668 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:28,144 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSIP_20250218.json
+2025-02-18 16:11:28,145 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSIP_20250218.json
+2025-02-18 16:11:28,145 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:11:32,147 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSIU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIU
+2025-02-18 16:11:32,150 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:32,491 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSIU_20250218.json
+2025-02-18 16:11:32,491 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSIU_20250218.json
+2025-02-18 16:11:32,491 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:11:38,493 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSBK - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSBK
+2025-02-18 16:11:38,496 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:40,660 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSBK_20250218.json
+2025-02-18 16:11:40,661 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSBK_20250218.json
+2025-02-18 16:11:40,661 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:11:44,662 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSAG - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAG
+2025-02-18 16:11:44,665 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:45,460 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSAG_20250218.json
+2025-02-18 16:11:45,461 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSAG_20250218.json
+2025-02-18 16:11:45,461 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:11:51,463 - __main__ - INFO - Processing xlf_sector_summary - SECTOR_DJUSFA - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFA
+2025-02-18 16:11:51,466 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:51,865 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlf_sector_summary/json/XLF_SECTOR_DJUSFA_20250218.json
+2025-02-18 16:11:51,866 - __main__ - INFO - Successfully stored: xlf_sector_summary/json/XLF_SECTOR_DJUSFA_20250218.json
+2025-02-18 16:11:51,866 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:11:58,868 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSAI - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAI
+2025-02-18 16:11:58,872 - responses - INFO - request.allowed-passthru
+2025-02-18 16:11:59,788 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSAI_20250218.json
+2025-02-18 16:11:59,789 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSAI_20250218.json
+2025-02-18 16:11:59,789 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:12:03,789 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSCR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCR
+2025-02-18 16:12:03,793 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:04,235 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSCR_20250218.json
+2025-02-18 16:12:04,236 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSCR_20250218.json
+2025-02-18 16:12:04,236 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:12:10,237 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSCT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCT
+2025-02-18 16:12:10,241 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:10,841 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSCT_20250218.json
+2025-02-18 16:12:10,842 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSCT_20250218.json
+2025-02-18 16:12:10,842 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:12:14,844 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSDV - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSDV
+2025-02-18 16:12:14,847 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:15,447 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSDV_20250218.json
+2025-02-18 16:12:15,448 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSDV_20250218.json
+2025-02-18 16:12:15,448 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:12:19,449 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSEC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSEC
+2025-02-18 16:12:19,451 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:20,011 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSEC_20250218.json
+2025-02-18 16:12:20,012 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSEC_20250218.json
+2025-02-18 16:12:20,012 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:12:24,013 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSSW - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSW
+2025-02-18 16:12:24,016 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:25,305 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSSW_20250218.json
+2025-02-18 16:12:25,306 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSSW_20250218.json
+2025-02-18 16:12:25,306 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:12:32,307 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DJUSSC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSC
+2025-02-18 16:12:32,310 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:32,908 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DJUSSC_20250218.json
+2025-02-18 16:12:32,908 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DJUSSC_20250218.json
+2025-02-18 16:12:32,908 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:12:35,909 - __main__ - INFO - Processing xlk_sector_summary - SECTOR_DWCREE - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DWCREE
+2025-02-18 16:12:35,911 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:36,314 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlk_sector_summary/json/XLK_SECTOR_DWCREE_20250218.json
+2025-02-18 16:12:36,315 - __main__ - INFO - Successfully stored: xlk_sector_summary/json/XLK_SECTOR_DWCREE_20250218.json
+2025-02-18 16:12:36,315 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:12:41,316 - __main__ - INFO - Processing xlu_sector_summary - SECTOR_DJUSWU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSWU
+2025-02-18 16:12:41,319 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:41,652 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlu_sector_summary/json/XLU_SECTOR_DJUSWU_20250218.json
+2025-02-18 16:12:41,652 - __main__ - INFO - Successfully stored: xlu_sector_summary/json/XLU_SECTOR_DJUSWU_20250218.json
+2025-02-18 16:12:41,652 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:12:48,653 - __main__ - INFO - Processing xlu_sector_summary - SECTOR_DJUSVE - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSVE
+2025-02-18 16:12:48,656 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:49,235 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlu_sector_summary/json/XLU_SECTOR_DJUSVE_20250218.json
+2025-02-18 16:12:49,235 - __main__ - INFO - Successfully stored: xlu_sector_summary/json/XLU_SECTOR_DJUSVE_20250218.json
+2025-02-18 16:12:49,235 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:12:56,236 - __main__ - INFO - Processing xlu_sector_summary - SECTOR_DJUSMU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMU
+2025-02-18 16:12:56,239 - responses - INFO - request.allowed-passthru
+2025-02-18 16:12:56,599 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlu_sector_summary/json/XLU_SECTOR_DJUSMU_20250218.json
+2025-02-18 16:12:56,600 - __main__ - INFO - Successfully stored: xlu_sector_summary/json/XLU_SECTOR_DJUSMU_20250218.json
+2025-02-18 16:12:56,600 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:13:00,601 - __main__ - INFO - Processing xlu_sector_summary - SECTOR_DJUSGU - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSGU
+2025-02-18 16:13:00,603 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:00,949 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlu_sector_summary/json/XLU_SECTOR_DJUSGU_20250218.json
+2025-02-18 16:13:00,949 - __main__ - INFO - Successfully stored: xlu_sector_summary/json/XLU_SECTOR_DJUSGU_20250218.json
+2025-02-18 16:13:00,949 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:13:04,950 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSPC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSPC
+2025-02-18 16:13:04,953 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:05,337 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSPC_20250218.json
+2025-02-18 16:13:05,337 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSPC_20250218.json
+2025-02-18 16:13:05,337 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:13:08,339 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSMT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMT
+2025-02-18 16:13:08,341 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:08,796 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSMT_20250218.json
+2025-02-18 16:13:08,796 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSMT_20250218.json
+2025-02-18 16:13:08,797 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:13:15,798 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSHR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHR
+2025-02-18 16:13:15,802 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:16,285 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSHR_20250218.json
+2025-02-18 16:13:16,285 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSHR_20250218.json
+2025-02-18 16:13:16,286 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:13:23,287 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSHV - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHV
+2025-02-18 16:13:23,290 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:23,812 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSHV_20250218.json
+2025-02-18 16:13:23,812 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSHV_20250218.json
+2025-02-18 16:13:23,813 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:13:30,813 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSIV - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSIV
+2025-02-18 16:13:30,816 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:31,433 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSIV_20250218.json
+2025-02-18 16:13:31,433 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSIV_20250218.json
+2025-02-18 16:13:31,433 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:13:34,434 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSID - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSID
+2025-02-18 16:13:34,437 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:34,817 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSID_20250218.json
+2025-02-18 16:13:34,818 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSID_20250218.json
+2025-02-18 16:13:34,818 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:13:41,819 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSAR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAR
+2025-02-18 16:13:41,822 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:42,216 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSAR_20250218.json
+2025-02-18 16:13:42,216 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSAR_20250218.json
+2025-02-18 16:13:42,217 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:13:47,218 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSAS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAS
+2025-02-18 16:13:47,221 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:47,646 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSAS_20250218.json
+2025-02-18 16:13:47,646 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSAS_20250218.json
+2025-02-18 16:13:47,646 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:13:53,648 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSAF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAF
+2025-02-18 16:13:53,651 - responses - INFO - request.allowed-passthru
+2025-02-18 16:13:54,050 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSAF_20250218.json
+2025-02-18 16:13:54,050 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSAF_20250218.json
+2025-02-18 16:13:54,051 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:14:01,052 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSBD - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSBD
+2025-02-18 16:14:01,055 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:01,616 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSBD_20250218.json
+2025-02-18 16:14:01,616 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSBD_20250218.json
+2025-02-18 16:14:01,616 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:14:05,618 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSFE - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFE
+2025-02-18 16:14:05,620 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:06,128 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSFE_20250218.json
+2025-02-18 16:14:06,128 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSFE_20250218.json
+2025-02-18 16:14:06,129 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:14:11,130 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSDN - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSDN
+2025-02-18 16:14:11,133 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:11,485 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSDN_20250218.json
+2025-02-18 16:14:11,485 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSDN_20250218.json
+2025-02-18 16:14:11,486 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:14:17,487 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSDS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSDS
+2025-02-18 16:14:17,490 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:18,489 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSDS_20250218.json
+2025-02-18 16:14:18,490 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSDS_20250218.json
+2025-02-18 16:14:18,490 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:14:24,492 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSTK - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSTK
+2025-02-18 16:14:24,495 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:24,981 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSTK_20250218.json
+2025-02-18 16:14:24,981 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSTK_20250218.json
+2025-02-18 16:14:24,982 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:14:27,983 - __main__ - INFO - Processing xli_sector_summary - SECTOR_DJUSRR - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRR
+2025-02-18 16:14:27,986 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:28,305 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xli_sector_summary/json/XLI_SECTOR_DJUSRR_20250218.json
+2025-02-18 16:14:28,305 - __main__ - INFO - Successfully stored: xli_sector_summary/json/XLI_SECTOR_DJUSRR_20250218.json
+2025-02-18 16:14:28,306 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:14:35,307 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSCX - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCX
+2025-02-18 16:14:35,310 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:36,644 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSCX_20250218.json
+2025-02-18 16:14:36,645 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSCX_20250218.json
+2025-02-18 16:14:36,645 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:14:40,647 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSST - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSST
+2025-02-18 16:14:40,650 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:41,469 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSST_20250218.json
+2025-02-18 16:14:41,469 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSST_20250218.json
+2025-02-18 16:14:41,469 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:14:46,471 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSCP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCP
+2025-02-18 16:14:46,474 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:47,058 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSCP_20250218.json
+2025-02-18 16:14:47,058 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSCP_20250218.json
+2025-02-18 16:14:47,058 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:14:50,059 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSAL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSAL
+2025-02-18 16:14:50,062 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:50,502 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSAL_20250218.json
+2025-02-18 16:14:50,502 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSAL_20250218.json
+2025-02-18 16:14:50,503 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:14:53,504 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSCC - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCC
+2025-02-18 16:14:53,506 - responses - INFO - request.allowed-passthru
+2025-02-18 16:14:54,224 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSCC_20250218.json
+2025-02-18 16:14:54,225 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSCC_20250218.json
+2025-02-18 16:14:54,225 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:14:59,226 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSMG - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSMG
+2025-02-18 16:14:59,228 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:00,458 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSMG_20250218.json
+2025-02-18 16:15:00,458 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSMG_20250218.json
+2025-02-18 16:15:00,458 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:15:04,459 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSNF - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSNF
+2025-02-18 16:15:04,461 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:04,996 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSNF_20250218.json
+2025-02-18 16:15:04,997 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSNF_20250218.json
+2025-02-18 16:15:04,997 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:15:11,998 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DJUSPM - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSPM
+2025-02-18 16:15:12,001 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:12,489 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DJUSPM_20250218.json
+2025-02-18 16:15:12,490 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DJUSPM_20250218.json
+2025-02-18 16:15:12,490 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:15:17,492 - __main__ - INFO - Processing xlb_sector_summary - SECTOR_DWCPAP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DWCPAP
+2025-02-18 16:15:17,495 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:17,820 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlb_sector_summary/json/XLB_SECTOR_DWCPAP_20250218.json
+2025-02-18 16:15:17,820 - __main__ - INFO - Successfully stored: xlb_sector_summary/json/XLB_SECTOR_DWCPAP_20250218.json
+2025-02-18 16:15:17,821 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:15:24,823 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSVN - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSVN
+2025-02-18 16:15:24,826 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:25,099 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSVN_20250218.json
+2025-02-18 16:15:25,100 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSVN_20250218.json
+2025-02-18 16:15:25,100 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:15:31,102 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSTB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSTB
+2025-02-18 16:15:31,105 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:31,427 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSTB_20250218.json
+2025-02-18 16:15:31,427 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSTB_20250218.json
+2025-02-18 16:15:31,427 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:15:34,429 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSSD - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSSD
+2025-02-18 16:15:34,433 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:34,725 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSSD_20250218.json
+2025-02-18 16:15:34,726 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSSD_20250218.json
+2025-02-18 16:15:34,726 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:15:41,727 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSRD - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSRD
+2025-02-18 16:15:41,730 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:42,040 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSRD_20250218.json
+2025-02-18 16:15:42,040 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSRD_20250218.json
+2025-02-18 16:15:42,040 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:15:48,042 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSHN - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSHN
+2025-02-18 16:15:48,045 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:48,341 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSHN_20250218.json
+2025-02-18 16:15:48,341 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSHN_20250218.json
+2025-02-18 16:15:48,342 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:15:54,343 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSFP - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFP
+2025-02-18 16:15:54,346 - responses - INFO - request.allowed-passthru
+2025-02-18 16:15:55,158 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSFP_20250218.json
+2025-02-18 16:15:55,159 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSFP_20250218.json
+2025-02-18 16:15:55,159 - __main__ - INFO - Sleeping for 5 seconds before the next request...
+2025-02-18 16:16:00,160 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSFD - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSFD
+2025-02-18 16:16:00,162 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:00,545 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSFD_20250218.json
+2025-02-18 16:16:00,545 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSFD_20250218.json
+2025-02-18 16:16:00,546 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:16:06,547 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSCM - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSCM
+2025-02-18 16:16:06,550 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:06,918 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSCM_20250218.json
+2025-02-18 16:16:06,918 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSCM_20250218.json
+2025-02-18 16:16:06,918 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:16:09,919 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSDB - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSDB
+2025-02-18 16:16:09,922 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:10,266 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSDB_20250218.json
+2025-02-18 16:16:10,266 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSDB_20250218.json
+2025-02-18 16:16:10,267 - __main__ - INFO - Sleeping for 7 seconds before the next request...
+2025-02-18 16:16:17,269 - __main__ - INFO - Processing xlp_sector_summary - SECTOR_DJUSGT - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSGT
+2025-02-18 16:16:17,273 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:17,580 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xlp_sector_summary/json/XLP_SECTOR_DJUSGT_20250218.json
+2025-02-18 16:16:17,581 - __main__ - INFO - Successfully stored: xlp_sector_summary/json/XLP_SECTOR_DJUSGT_20250218.json
+2025-02-18 16:16:17,581 - __main__ - INFO - Sleeping for 6 seconds before the next request...
+2025-02-18 16:16:23,582 - __main__ - INFO - Processing xle_sector_summary - SECTOR_DWCCOA - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DWCCOA
+2025-02-18 16:16:23,585 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:23,879 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xle_sector_summary/json/XLE_SECTOR_DWCCOA_20250218.json
+2025-02-18 16:16:23,880 - __main__ - INFO - Successfully stored: xle_sector_summary/json/XLE_SECTOR_DWCCOA_20250218.json
+2025-02-18 16:16:23,880 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:16:26,882 - __main__ - INFO - Processing xle_sector_summary - SECTOR_DJUSOI - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSOI
+2025-02-18 16:16:26,885 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:27,386 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xle_sector_summary/json/XLE_SECTOR_DJUSOI_20250218.json
+2025-02-18 16:16:27,386 - __main__ - INFO - Successfully stored: xle_sector_summary/json/XLE_SECTOR_DJUSOI_20250218.json
+2025-02-18 16:16:27,386 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:16:31,388 - __main__ - INFO - Processing xle_sector_summary - SECTOR_DJUSOL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSOL
+2025-02-18 16:16:31,391 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:31,816 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xle_sector_summary/json/XLE_SECTOR_DJUSOL_20250218.json
+2025-02-18 16:16:31,816 - __main__ - INFO - Successfully stored: xle_sector_summary/json/XLE_SECTOR_DJUSOL_20250218.json
+2025-02-18 16:16:31,816 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:16:35,817 - __main__ - INFO - Processing xle_sector_summary - SECTOR_DJUSOS - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSOS
+2025-02-18 16:16:35,820 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:36,472 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xle_sector_summary/json/XLE_SECTOR_DJUSOS_20250218.json
+2025-02-18 16:16:36,473 - __main__ - INFO - Successfully stored: xle_sector_summary/json/XLE_SECTOR_DJUSOS_20250218.json
+2025-02-18 16:16:36,473 - __main__ - INFO - Sleeping for 4 seconds before the next request...
+2025-02-18 16:16:40,473 - __main__ - INFO - Processing xle_sector_summary - SECTOR_DJUSPL - https://stockcharts.com/j-sum/sum?cmd=perf&group=SECTOR_DJUSPL
+2025-02-18 16:16:40,476 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:40,884 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/sector_summary\xle_sector_summary/json/XLE_SECTOR_DJUSPL_20250218.json
+2025-02-18 16:16:40,885 - __main__ - INFO - Successfully stored: xle_sector_summary/json/XLE_SECTOR_DJUSPL_20250218.json
+2025-02-18 16:16:40,885 - __main__ - INFO - Sleeping for 3 seconds before the next request...
+2025-02-18 16:16:43,886 - __main__ - INFO - Processing category: market_summary
+2025-02-18 16:16:43,887 - __main__ - INFO - Processing spdr_market_summary - cmd=msummary&view=E - https://stockcharts.com/j-sum/sum?cmd=msummary&view=E
+2025-02-18 16:16:43,890 - responses - INFO - request.allowed-passthru
+2025-02-18 16:16:44,272 - root - INFO - Data successfully saved to R:\local_bucket\raw_store/stockcharts/market_summary\spdr_market_summary/json/spdr_market_summary_20250218.json
+2025-02-18 16:16:44,273 - __main__ - INFO - Successfully stored: spdr_market_summary/json/spdr_market_summary_20250218.json
+2025-02-18 16:16:44,273 - __main__ - INFO - Sleeping for 3 seconds before the next request...
