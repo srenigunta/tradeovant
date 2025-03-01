@@ -11,10 +11,8 @@ from tradeovant.imports.common_utils import LocalS3WithDirectory
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("api_fetcher.log"), logging.StreamHandler()]
-)
-logger = logging.getLogger(__name__)
+    format='%(asctime)s - %(levelname)s - %(message)s'
+    )
 
 
 def load_config(config_path):
@@ -51,7 +49,7 @@ def process_category(category_name, category_config, headers, storage):
                 try:
                     endpoint_to_use = child_endpoint.strip() if child_endpoint else api_endpoint
                     url = construct_api_url(api['api_prefix'], endpoint_to_use)
-                    logger.info(f"Processing {api_name} - {endpoint_to_use} - {url}")
+                    logging.info(f"Processing {api_name} - {endpoint_to_use} - {url}")
 
                     # Execute API request
                     response = requests.get(url, headers=headers, timeout=15)
@@ -73,22 +71,22 @@ def process_category(category_name, category_config, headers, storage):
                     with open(data_file_path, "w") as f:
                         json.dump(data, f, indent=4)
                     logging.info(f"Data successfully saved to {data_file_path}")
-                    logger.info(f"Successfully stored: {file_key}")
+                    logging.info(f"Successfully stored: {file_key}")
 
                     # Introduce a random delay before the next request (5-10 seconds)
                     delay = random.randint(3, 7)
-                    logger.info(f"Sleeping for {delay} seconds before the next request...")
+                    logging.info(f"Sleeping for {delay} seconds before the next request...")
                     time.sleep(delay)
 
                 except requests.exceptions.RequestException as e:
-                    logger.error(f"Request failed for {api_name} - {endpoint_to_use}: {str(e)}")
+                    logging.error(f"Request failed for {api_name} - {endpoint_to_use}: {str(e)}")
                 except json.JSONDecodeError:
-                    logger.error(f"Invalid JSON response for {api_name} - {endpoint_to_use}")
+                    logging.error(f"Invalid JSON response for {api_name} - {endpoint_to_use}")
                 except Exception as e:
-                    logger.error(f"Unexpected error processing {api_name} - {endpoint_to_use}: {str(e)}")
+                    logging.error(f"Unexpected error processing {api_name} - {endpoint_to_use}: {str(e)}")
 
     except KeyError as e:
-        logger.error(f"Missing required configuration in {category_name}: {str(e)}")
+        logging.error(f"Missing required configuration in {category_name}: {str(e)}")
 
 
 def main():
@@ -96,7 +94,7 @@ def main():
     config_path = os.path.join(current_dir, "..", "config", "stockcharts_api_config.yaml")
 
     config = load_config(os.path.abspath(config_path))
-    logger.info("Config file loaded...")
+    logging.info("Config file loaded...")
 
     headers = {
         "authority": "stockcharts.com",
@@ -115,13 +113,13 @@ def main():
     }
 
     storage = LocalS3WithDirectory()
-    logger.info("Storage initiated...")
+    logging.info("Storage initiated...")
 
     # Process all top-level categories except headers
     for category in config:
         if category == 'headers':
             continue
-        logger.info(f"Processing category: {category}")
+        logging.info(f"Processing category: {category}")
         process_category(category, config[category], headers, storage)
 
 

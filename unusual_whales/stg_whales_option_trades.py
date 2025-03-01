@@ -125,9 +125,9 @@ def main(rerun_partitions):
 
     # 2) Load the YAML
     os.environ["NUMEXPR_MAX_THREADS"] = "16"
-    logging.info("Loading whales_sql_config_stage.yaml...")
+    logging.info("Loading whales_sql_option_trades.yaml...")
     current_dir = os.path.dirname(__file__)
-    sql_path = os.path.join(current_dir, "..", "config", "whales_sql_config_stage.yaml")
+    sql_path = os.path.join(current_dir, "..", "config", "whales_sql_option_trades.yaml")
     sql_config_file = os.path.abspath(sql_path)
 
     with open(sql_config_file, "r") as f:

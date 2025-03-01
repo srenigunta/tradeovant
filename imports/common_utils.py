@@ -52,10 +52,6 @@ class LocalS3WithDirectory:
             if not bucket_path.exists():
                 bucket_path.mkdir(parents=True, exist_ok=True)
 
-    from pathlib import Path
-    import shutil
-    import os
-
     def upload_file(self, local_file, bucket_name, bucket_key):
         """
         Upload a file to the mock S3 bucket and local directory.
@@ -87,13 +83,13 @@ class LocalS3WithDirectory:
             print(f"Error copying file: {e}")
             return
 
-        # Upload the file to S3
-        try:
-            self.s3.upload_file(local_file, bucket_name, bucket_key)
-            print(f"Uploaded to mock S3: {bucket_name}/{bucket_key}")
-        except Exception as e:
-            print(f"Error uploading file to S3: {e}")
-            return
+        # # Upload the file to S3
+        # try:
+        #     self.s3.upload_file(local_file, bucket_name, bucket_key)
+        #     print(f"Uploaded to mock S3: {bucket_name}/{bucket_key}")
+        # except Exception as e:
+        #     print(f"Error uploading file to S3: {e}")
+        #     return
 
     def list_files(self, bucket_name, bucket_key=""):
         """

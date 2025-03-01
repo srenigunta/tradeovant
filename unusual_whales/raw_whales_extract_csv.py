@@ -5,7 +5,7 @@ if __name__ == "__main__":
     storage = LocalS3WithDirectory()
 
     # List of source directories
-    source_dirs = ["darkpool", "hotchains", "oichanges", "optionsflow", "stockscreener"]
+    source_dirs = ["darkpool", "hotchains", "oichanges", "optiontrades", "optionscreener"]
 
     # Iterate through the directories
     for source_dir in source_dirs:

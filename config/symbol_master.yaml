@@ -1,0 +1,167 @@
+datasets:
+  symbol_master:
+    type: "aggregated"
+    sources:
+      stockinvest: "R:\\local_bucket\\stage_store\\stockinvest_us\\screener_data\\*\\*.parquet"
+      finviz: "R:\\local_bucket\\stage_store\\finviz\\fundamentals\\*\\*.parquet"
+      stockcharts: "R:\\local_bucket\\stage_store\\stockcharts\\sctr_reports\\*\\*.parquet"
+      whales: "R:\\local_bucket\\raw_store\\whales\\optionscreener\\parquet\\*\\*.parquet"
+    sql: |
+      SELECT DISTINCT
+          symbol,
+          COALESCE(name, max_name) AS name,
+          sector,
+          industry
+      FROM
+          (
+              SELECT DISTINCT
+                  symbol,
+                  name,
+                  MAX(name) OVER (PARTITION BY symbol) AS max_name,
+                  sector,
+                  industry,
+                  source_data,
+                  RANK() OVER (PARTITION BY symbol ORDER BY priority, sector, industry, name DESC NULLS LAST) AS row_ranking
+              FROM
+                  (
+                      SELECT
+                          symbol,
+                          CASE
+                              WHEN LENGTH(co_name) <= 2 THEN NULL
+                              ELSE co_name
+                          END AS name,
+                          CASE
+                              WHEN LENGTH(sector) <= 1 AND LENGTH(industry) <= 1 THEN NULL
+                              WHEN LENGTH(sector) <= 1 AND LENGTH(industry) > 1 THEN MAX(
+                                  CASE
+                                      WHEN sector = 'Financial Services' THEN 'Financial'
+                                      ELSE sector
+                                  END
+                              ) OVER (PARTITION BY industry)
+                              WHEN sector = 'Financial Services' THEN 'Financial'
+                              ELSE sector
+                          END AS sector,
+                          CASE
+                              WHEN LENGTH(industry) <= 1 THEN NULL
+                              WHEN industry = 'Gambling, Resorts & Casinos' THEN 'Gambling'
+                              ELSE industry
+                          END AS industry,
+                          'stockinvest' AS source_data,
+                          1 AS priority
+                      FROM
+                          read_parquet('{stockinvest}', hive_partitioning = True)
+                      UNION ALL
+                      SELECT
+                          symbol,
+                          CASE
+                              WHEN LENGTH(name) <= 2 THEN NULL
+                              ELSE name
+                          END AS name,
+                          CASE
+                              WHEN LENGTH(sector) <= 1 THEN NULL
+                              ELSE sector
+                          END AS sector,
+                          CASE
+                              WHEN LENGTH(industry) <= 1 THEN NULL
+                              WHEN industry = 'Apparel Manufacturing' THEN 'Apparel - Manufacturers'
+                              WHEN industry = 'Apparel Retail' THEN 'Apparel - Retail'
+                              WHEN industry = 'Auto & Truck Dealerships' THEN 'Auto - Dealerships'
+                              WHEN industry = 'Auto Manufacturers' THEN 'Auto - Manufacturers'
+                              WHEN industry = 'Auto Parts' THEN 'Auto - Parts'
+                              WHEN industry = 'Home Improvement Retail' THEN 'Home Improvement'
+                              WHEN industry = 'Oil & Gas E&P' THEN 'Oil & Gas Exploration & Production'
+                              WHEN industry = 'Paper & Paper Products' THEN 'Paper, Lumber & Forest Products'
+                              WHEN industry = 'Thermal Coal' THEN 'Coal'
+                              ELSE industry
+                          END AS industry,
+                          'finviz' AS source_data,
+                          2 AS priority
+                      FROM
+                          read_parquet('{finviz}', hive_partitioning = True)
+                      UNION ALL
+                      SELECT
+                          symbol,
+                          CASE
+                              WHEN LENGTH(name) <= 2 THEN NULL
+                              ELSE name
+                          END AS name,
+                          CASE
+                              WHEN LENGTH(sector) <= 1 THEN NULL
+                              WHEN sector = 'Consumer Discretionary' THEN 'Consumer Cyclical'
+                              WHEN sector = 'Consumer Staples' THEN 'Consumer Defensive'
+                              WHEN sector = 'Materials' THEN 'Basic Materials'
+                              WHEN sector = 'Financial Services' THEN 'Financial'
+                              WHEN sector = 'Industrial' THEN 'Industrials'
+                              WHEN sector = 'Health Care' THEN 'Healthcare'
+                              ELSE sector
+                          END AS sector,
+                          CASE
+                              WHEN LENGTH(industry) <= 1 THEN NULL
+                              WHEN industry = 'Aerospace' THEN 'Aerospace & Defense'
+                              WHEN industry = 'Apparel Retailers' THEN 'Apparel - Retail'
+                              WHEN industry = 'Auto Parts' THEN 'Auto - Parts'
+                              WHEN industry = 'Automobiles' THEN 'Auto - Manufacturers'
+                              WHEN industry = 'Exploration & Production' THEN 'Oil & Gas Exploration & Production'
+                              WHEN industry = 'Furnishings' THEN 'Furnishings, Fixtures & Appliances'
+                              WHEN industry = 'Home Improvement Retailers' THEN 'Home Improvement'
+                              WHEN industry = 'Integrated Oil & Gas' THEN 'Oil & Gas Integrated'
+                              WHEN industry = 'Oil Equipment & Services' THEN 'Oil & Gas Equipment & Services'
+                              WHEN industry = 'Paper' THEN 'Paper, Lumber & Forest Products'
+                              WHEN industry = 'Specialty Retailers' THEN 'Specialty Retail'
+                              WHEN industry = 'Waste & Disposal Services' THEN 'Waste Management'
+                              ELSE industry
+                          END AS industry,
+                          'stockcharts' AS source_data,
+                          3 AS priority
+                      FROM
+                          read_parquet('{stockcharts}', hive_partitioning = True)
+                      UNION ALL
+                      SELECT
+                          ticker AS symbol,
+                          CASE
+                              WHEN LENGTH(full_name) <= 2 THEN NULL
+                              ELSE ARRAY_TO_STRING(
+                                  ARRAY(
+                                      SELECT
+                                          UPPER(SUBSTRING(unnest.word, 1, 1)) || LOWER(SUBSTRING(unnest.word, 2))
+                                      FROM
+                                          UNNEST(string_to_array(lower(full_name), ' ')) AS unnest(word)
+                                  ),
+                                  ' '
+                              )
+                          END AS name,
+                          CASE
+                              WHEN LENGTH(sector) <= 1 THEN NULL
+                              WHEN sector = 'Financial Services' THEN 'Financial'
+                              ELSE sector
+                          END AS sector,
+                          NULL AS industry,
+                          'whales' AS source_data,
+                          4 AS priority
+                      FROM
+                          read_parquet('{whales}', hive_partitioning = True)
+                  ) sc
+              ORDER BY
+                  1, 6, 3, 4 NULLS LAST
+          ) sc
+      WHERE
+          row_ranking = 1
+      ORDER BY
+          1, 2, 3, 4
+    target: "R:\\local_bucket\\bronze_store\\symbol_master\\symbol_master.parquet"
+
+  # Example for a partitioned dataset (for future use)
+#   options_flow:
+#     type: "partitioned"
+#     partition_column: "file_version_date"
+#     source: "R:\\local_bucket\\stage_store\\whales\\optionsflow\\*\\*.parquet"
+#     sql: |
+#       SELECT
+#           file_version_date,
+#           underlying_symbol,
+#           option_chain_id,
+#           COUNT(*) AS trade_count
+#       FROM read_parquet('{source}', hive_partitioning = True)
+#       WHERE file_version_date = '{partition_val}'
+#       GROUP BY file_version_date, underlying_symbol, option_chain_id
+#     target: "R:\\local_bucket\\bronze_store\\options_flow"

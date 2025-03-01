@@ -1,7 +1,7 @@
 datasets:
   options_flow:
-    raw_sub_path: "raw_store/whales/optionsflow/parquet"
-    stage_sub_path: "stage_store/whales/optionsflow"
+    raw_sub_path: "raw_store/whales/optiontrades/parquet"
+    stage_sub_path: "stage_store/whales/optiontrades"
     partition_column: "file_version_date"
     pre_select: |
       with chain_cnts
