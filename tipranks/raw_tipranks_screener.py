@@ -141,7 +141,7 @@ def main():
     raw_bucket = "raw_store"
 
     # Path to the Parquet file containing tickers
-    parquet_file_path = "R:/local_bucket/raw_store/whales/stockscreener/parquet/*/*.parquet"
+    parquet_file_path = "R:/local_bucket/raw_store/whales/optionscreener/parquet/*/*.parquet"
 
     # Instantiate the storage helper
     storage = LocalS3WithDirectory()

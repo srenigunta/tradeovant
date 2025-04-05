@@ -80,7 +80,7 @@ if __name__ == "__main__":
     payload = {
         "fields": ["symbol", "co_name", "sector", "industry", "market_capitalization"],
         "query": {"condition": "AND",
-                  "rules": [{"id": "exchange_id", "field": "exchange_id", "operator": "in", "value": [1, 4]}]},
+                  "rules": [{"id": "exchange_id", "field": "exchange_id", "operator": "in", "value": [1, 4, 6, 7, 27]}]},
         "sort": {"field": "percentage", "direction": "DESC"},
     }
     file_version_date = time.strftime("%Y%m%d")

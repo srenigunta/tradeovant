@@ -3,7 +3,7 @@ datasets:
     type: "partitioned"
     partition_column: "file_version_date"
     sources:
-      stockscreener: "R:\\local_bucket\\raw_store\\whales\\stockscreener\\parquet\\*\\*.parquet"
+      stockscreener: "R:\\local_bucket\\raw_store\\whales\\optionscreener\\parquet\\*\\*.parquet"
       optionsflow: "R:\\local_bucket\\raw_store\\whales\\optiontrades\\parquet\\*\\*.parquet"
     target: "R:\\local_bucket\\stage_store\\whales\\optionscreener"
     sql: |

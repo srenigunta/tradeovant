@@ -16,7 +16,7 @@ datasets:
         file_version_date,
         underlying_symbol,
         option_chain_id,
-        coalesce(side, 'all') as side,
+        coalesce(side, 'total') as side,
         option_type,
         expiry,
         round(try_cast(strike as double), 2) as strike,
@@ -25,7 +25,7 @@ datasets:
             when upstream_condition_detail in ('slan', 'slai', 'mesl', 'slcn', 'slft', 'mfsl') then 'sweep'
             when upstream_condition_detail in ('isoi', 'mlft') then 'manual_multileg'
             else 'standard'
-        end, 'all') as option_tx_type,
+        end, 'total') as option_tx_type,
         -- 1) Basic trade aggregations:
         COUNT(*) AS trade_count,
         SUM(cast(size as bigint)) AS total_contracts,
@@ -52,7 +52,7 @@ datasets:
         option_type,
         expiry,
         strike,
-        rollup(side, option_tx_type)
+        cube(side, option_tx_type)
       ORDER BY
         underlying_symbol,
         option_chain_id,

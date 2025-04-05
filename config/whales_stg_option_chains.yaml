@@ -1,0 +1,281 @@
+datasets:
+  options_screener:
+    type: "partitioned"
+    partition_column: "file_version_date"
+    sources:
+      optionsflow: "R:\\local_bucket\\raw_store\\whales\\optiontrades\\parquet\\*\\*.parquet"
+      oichanges: "R:\\local_bucket\\raw_store\\whales\\oichanges\\parquet\\*\\*.parquet"
+    target: "R:\\local_bucket\\stage_store\\whales\\optionchains"
+    sql: |
+      with chain_base
+      as
+      (
+        select distinct
+          file_version_date,
+          option_symbol,
+          underlying_symbol,
+          try_cast(strike as double) as strike,
+          try_cast('20'||substring(option_symbol, length(underlying_symbol)+1, 6) as int) as expiry,
+          substring(option_symbol, length(underlying_symbol)+7, 1) as option_typ,
+          TRY_CAST(dte as int) as days_to_expiry,
+          -- Volume Metrics
+          TRY_CAST(curr_vol AS BIGINT) AS curr_chain_vol,
+          TRY_CAST(prev_vol AS BIGINT) AS prev_chain_vol,
+          TRY_CAST(curr_vol AS BIGINT) - TRY_CAST(prev_vol AS BIGINT) AS chain_vol_diff,
+          -- OI Metrics
+          TRY_CAST(REPLACE(curr_oi, ',', '') AS BIGINT) AS curr_oi,
+          TRY_CAST(REPLACE(last_oi, ',', '') AS BIGINT) AS prev_oi,
+          TRY_CAST(oi_diff_plain AS BIGINT) AS oi_diff,
+              round(TRY_CAST(curr_vol AS BIGINT) / nullif(TRY_CAST(REPLACE(curr_oi, ',', '') AS BIGINT), 0), 2) as unusual_curr_vol,
+              round((TRY_CAST(curr_vol AS BIGINT) - TRY_CAST(prev_vol AS BIGINT)) / nullif(TRY_CAST(REPLACE(curr_oi, ',', '') AS BIGINT), 0), 2) as unusual_diff_vol
+        FROM read_parquet('{oichanges}', hive_partitioning = True)
+        WHERE file_version_date = '{partition_val}'
+      ),
+      option_trades
+      as
+      (
+        SELECT
+          ot.file_version_date,
+          ot.underlying_symbol,
+          ot.option_chain_id,
+          ot.option_type,
+          round(try_cast(ot.strike as double), 2) as strike,
+          try_cast(strftime(try_cast(ot.expiry as date), '%Y%m%d') as int) as expiry,
+          coalesce(ot.side, 'total') as side,
+          coalesce(CASE 
+                              WHEN ot.option_type = 'call' AND ot.side = 'ask' THEN 'bull'
+                              WHEN ot.option_type = 'put' AND ot.side = 'bid' THEN 'bull'
+                              WHEN ot.option_type = 'call' AND ot.side = 'bid' THEN 'bear'
+                              WHEN ot.option_type = 'put' AND ot.side = 'ask' THEN 'bear'
+                              WHEN ot.side = 'mid' then 'neutral'
+                          END, 'total') as bull_bear_flg,
+          coalesce(case 
+                when ot.upstream_condition_detail in ('mlet', 'mlat', 'mlct', 'tlct', 'tlft', 'tlet', 'tlat', 'isoi', 'mlft') then 'multileg'
+                when ot.upstream_condition_detail in ('slan', 'slai', 'mesl', 'slcn', 'slft', 'mfsl') then 'sweep'
+                else 'standard'
+              end, 'total') as option_tx_type,
+          -- 1) Basic trade aggregations:
+          COUNT(distinct ot.rowid) AS trade_count,
+          SUM(cast(ot.size as bigint)) AS total_contracts,
+          SUM(cast(ot.premium as bigint)) AS total_premium,
+          -- 2) Volume & Open Interest
+          MAX(cast(ot.open_interest as bigint)) AS open_interest, 
+          -- 3) Price stats:
+          MIN(cast(ot.price as double)) AS min_price,
+          MAX(cast(ot.price as double)) AS max_price,
+          round(SUM(cast(ot.price as double) * cast(ot.size as bigint)) / NULLIF(SUM(cast(ot.size as bigint)), 0), 2) AS wtd_avg_price,
+          -- 4) Weighted-average implied vol & greeks:
+          round(SUM(try_cast(ot.implied_volatility as double) * cast(size as bigint)) / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_iv,
+          round(SUM(try_cast(ot.delta as double) * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_delta,
+          round(SUM(try_cast(ot.gamma as double) * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_gamma,
+          round(SUM(try_cast(ot.vega as double)  * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_vega,
+          round(SUM(try_cast(ot.theta as double) * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_theta,
+          round(SUM(try_cast(ot.rho as double) * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_rho,
+          round(SUM(try_cast(ot.theo as double) * cast(ot.size as bigint))             / NULLIF(SUM(cast(ot.size as bigint)), 0), 4) AS wtd_avg_theo
+        FROM read_parquet('{optionsflow}', hive_partitioning = True) ot
+        inner join 
+        (
+          select distinct file_version_date, underlying_symbol, option_symbol, expiry, strike from chain_base cb1
+        ) cb
+        on cb.file_version_date = ot.file_version_date
+        and cb.option_symbol = ot.option_chain_id
+        GROUP BY ot.file_version_date, ot.option_chain_id, ot.underlying_symbol, ot.option_type, ot.expiry,	ot.strike, cube(side, option_tx_type)
+        ORDER BY ot.underlying_symbol, ot.option_chain_id, ot.expiry, strike, option_tx_type, side nulls last
+      ),
+      strike_details
+      as
+      (
+          select 
+              file_version_date,underlying_symbol,strike,expiry,
+              -- total stats
+              sum(case when bull_bear_flg = 'total' and option_tx_type is null then trade_count end) as total_strike_trades,
+              sum(case when bull_bear_flg = 'total' and option_tx_type is null then total_contracts end) as total_strike_vol,
+              sum(case when bull_bear_flg = 'total' and option_tx_type is null then total_premium end) as total_strike_prem,
+              -- bull bear stats
+              sum(case when bull_bear_flg = 'bull' and option_tx_type is null then trade_count end) as bull_strike_trades,
+              sum(case when bull_bear_flg = 'bull' and option_tx_type is null then total_contracts end) as bull_strike_vol,
+              sum(case when bull_bear_flg = 'bull' and option_tx_type is null then total_premium end) as bull_strike_prem,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type is null then trade_count end) as bear_strike_trades,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type is null then total_contracts end) as bear_strike_vol,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type is null then total_premium end) as bear_strike_prem,
+              -- sweep stats
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'sweep' then trade_count end) as sweep_strike_trades,
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'sweep' then total_contracts end) as sweep_strike_vol,
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'sweep' then total_premium end) as sweep_strike_prem,
+              sum(case when bull_bear_flg = 'bull' and option_tx_type = 'sweep' then trade_count end) as bull_sweep_strike_trades,
+              sum(case when bull_bear_flg = 'bull' and option_tx_type = 'sweep' then total_contracts end) as bull_sweep_strike_vol,
+              sum(case when bull_bear_flg = 'bull' and option_tx_type = 'sweep' then total_premium end) as bull_sweep_strike_prem,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type = 'sweep' then trade_count end) as bear_sweep_strike_trades,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type = 'sweep' then total_contracts end) as bear_sweep_strike_vol,
+              sum(case when bull_bear_flg = 'bear' and option_tx_type = 'sweep' then total_premium end) as bear_sweep_strike_prem,
+              -- multileg stats
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'multileg' then trade_count end) as ml_strike_trades,
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'multileg' then total_contracts end) as ml_strike_vol,
+              sum(case when bull_bear_flg = 'total' and option_tx_type = 'multileg' then total_premium end) as ml_strike_prem
+          from option_trades
+          group by file_version_date,underlying_symbol,strike,expiry
+      ),
+      trades_agg
+      as 
+      (
+        select distinct
+          ot.file_version_date,
+          ot.underlying_symbol,
+          ot.option_chain_id,
+          ot.option_type,
+          ot.strike,
+          ot.expiry,
+          -- oi metrics
+          MAX(cb.days_to_expiry) AS days_to_expiry,
+          MAX(cb.curr_chain_vol) AS curr_chain_vol,
+          MAX(cb.prev_chain_vol) AS prev_chain_vol,
+          MAX(cb.chain_vol_diff) AS chain_vol_diff,
+          MAX(cb.curr_oi) AS curr_oi,
+          MAX(cb.prev_oi) AS prev_oi,
+          MAX(cb.oi_diff) AS oi_diff,
+              MAX(cb.unusual_diff_vol) as unusual_diff_vol,
+              MAX(cb.unusual_curr_vol) as unusual_curr_vol,
+              MAX(case when (cb.unusual_diff_vol > 1 or unusual_curr_vol > 2) then 'Y' else 'N' end) as unusual_vol_flg,
+          -- trade count metrics
+          MAX(case when ot.side = 'total' and ot.option_tx_type is null then ot.trade_count end) as total_trades,
+          MAX(case when ot.side = 'ask' and ot.option_tx_type is null then ot.trade_count end) as trades_at_ask,
+          MAX(case when ot.side = 'bid' and ot.option_tx_type is null then ot.trade_count end) as trades_at_bid,
+          -- volume metrics
+          MAX(case when side = 'total' and option_tx_type is null then total_contracts end) as total_vol,
+          MAX(case when side = 'ask' and option_tx_type is null then total_contracts end) as ask_vol,
+          MAX(case when side = 'bid' and option_tx_type is null then total_contracts end) as bid_vol,
+          MAX(case when side = 'total' and option_tx_type = 'sweep' then total_contracts end) as total_sweep_vol,
+          MAX(case when side = 'ask' and option_tx_type = 'sweep' then total_contracts end) as sweep_ask_vol,
+          MAX(case when side = 'bid' and option_tx_type = 'sweep' then total_contracts end) as sweep_bid_vol,
+          MAX(case when side = 'total' and option_tx_type = 'multileg' then total_contracts end) as total_ml_vol,
+          MAX(case when side = 'ask' and option_tx_type = 'multileg' then total_contracts end) as ml_ask_vol,
+          MAX(case when side = 'bid' and option_tx_type = 'multileg' then total_contracts end) as ml_bid_vol,
+          -- premium metrics
+          MAX(case when side = 'total' and option_tx_type is null then total_premium end) as total_premium,
+          MAX(case when side = 'ask' and option_tx_type is null then total_premium end) as total_premium_at_ask,
+          MAX(case when side = 'bid' and option_tx_type is null then total_premium end) as total_premium_at_bid,
+          MAX(case when side = 'total' and option_tx_type = 'sweep' then total_premium end) as total_sweep_premium,
+          MAX(case when side = 'ask' and option_tx_type = 'sweep' then total_premium end) as sweep_ask_premium,
+          MAX(case when side = 'bid' and option_tx_type = 'sweep' then total_premium end) as sweep_bid_premium,
+          MAX(case when side = 'total' and option_tx_type = 'multileg' then total_premium end) as total_ml_premium,
+          MAX(case when side = 'ask' and option_tx_type = 'multileg' then total_premium end) as ml_ask_premium,
+          MAX(case when side = 'bid' and option_tx_type = 'multileg' then total_premium end) as ml_bid_premium,
+          -- price and greeks
+          MAX(case when side = 'total' and option_tx_type is null then min_price end) as min_price,
+          MAX(case when side = 'total' and option_tx_type is null then max_price end) as max_price,
+          MAX(case when side = 'total' and option_tx_type is null then wtd_avg_price end) as total_avg_price,
+          MAX(case when side = 'total' and option_tx_type is null then wtd_avg_delta end) as total_avg_delta,
+          MAX(case when side = 'total' and option_tx_type is null then wtd_avg_gamma end) as total_avg_gamma,
+              -- strike metrics
+              MAX(total_strike_trades) as total_strike_trades,
+              MAX(total_strike_vol) as total_strike_vol,
+              MAX(total_strike_prem) as total_strike_prem,
+              MAX(bull_strike_trades) as bull_strike_trades,
+              MAX(bull_strike_vol) as bull_strike_vol,
+              MAX(bull_strike_prem) as bull_strike_prem,
+              MAX(bear_strike_trades) as bear_strike_trades,
+              MAX(bear_strike_vol) as bear_strike_vol,
+              MAX(bear_strike_prem) as bear_strike_prem,
+              MAX(bull_strike_prem) - MAX(bear_strike_prem) as net_strike_prem,
+              MAX(sweep_strike_trades) as sweep_strike_trades,
+              MAX(sweep_strike_vol) as sweep_strike_vol,
+              MAX(sweep_strike_prem) as sweep_strike_prem,
+              MAX(bull_sweep_strike_trades) as bull_sweep_strike_trades,
+              MAX(bull_sweep_strike_vol) as bull_sweep_strike_vol,
+              MAX(bull_sweep_strike_prem) as bull_sweep_strike_prem,
+              MAX(bear_sweep_strike_trades) as bear_sweep_strike_trades,
+              MAX(bear_sweep_strike_vol) as bear_sweep_strike_vol,
+              MAX(bear_sweep_strike_prem) as bear_sweep_strike_prem,
+              MAX(ml_strike_trades) as ml_strike_trades,
+              MAX(ml_strike_vol) as ml_strike_vol,
+              MAX(ml_strike_prem) as ml_strike_prem
+        from option_trades ot
+        inner join strike_details sd
+        on sd.file_version_date = ot.file_version_date
+        and sd.underlying_symbol = ot.underlying_symbol
+        and sd.strike = ot.strike
+        and sd.expiry = ot.expiry
+        inner join chain_base cb
+        on cb.option_symbol = ot.option_chain_id
+        group by ot.file_version_date,ot.underlying_symbol,ot.option_chain_id,ot.option_type,ot.strike,ot.expiry
+        order by ot.file_version_date,ot.underlying_symbol,ot.expiry,ot.strike,ot.option_type
+      ),
+      option_type_zscore
+      as
+      (
+      select distinct
+        file_version_date,
+        underlying_symbol,
+        option_type,
+        expiry,
+        strike,
+        round((chain_vol_diff - avg(chain_vol_diff) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(chain_vol_diff) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_vol_diff_zscore,
+        round((oi_diff - avg(oi_diff) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(oi_diff) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_oi_diff_zscore,
+        round((total_trades - avg(total_trades) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(total_trades) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_trades_zscore,
+        round((total_sweep_vol - avg(total_sweep_vol) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(total_sweep_vol) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_sweep_vol_zscore,
+        round((total_premium - avg(total_premium) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(total_premium) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_prem_zscore,
+        round((total_sweep_premium - avg(total_sweep_premium) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(total_sweep_premium) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_sweep_prem_zscore,
+        round((total_sweep_vol - avg(total_sweep_vol) over (partition by file_version_date,underlying_symbol,option_type,expiry))/nullif(STDDEV(total_sweep_vol) over (partition by file_version_date,underlying_symbol,option_type,expiry), 0), 2) as chain_sweep_vol_zscore
+      from trades_agg
+      ),
+      strike_zscore
+      as
+      (
+      select distinct 
+        file_version_date,
+        underlying_symbol,
+        expiry,
+        strike,
+        round((total_strike_prem- avg(total_strike_prem) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(total_strike_prem) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as total_strike_prem_zscore,
+        round((sweep_strike_vol- avg(sweep_strike_vol) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(sweep_strike_vol) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as sweep_strike_vol_zscore,
+        round((sweep_strike_prem- avg(sweep_strike_prem) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(sweep_strike_prem) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as sweep_strike_prem_zscore,
+        round((bull_strike_trades- avg(bull_strike_trades) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(bull_strike_trades) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as bull_strike_trades_zscore,
+        round((bull_strike_vol- avg(bull_strike_vol) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(bull_strike_vol) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as bull_strike_vol_zscore,
+        round((bull_strike_prem- avg(bull_strike_prem) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(bull_strike_prem) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as bull_strike_prem_zscore,
+        round((net_strike_prem- avg(net_strike_prem) over (partition by file_version_date,underlying_symbol,expiry))/nullif(STDDEV(net_strike_prem) over (partition by file_version_date,underlying_symbol,expiry), 0), 2) as net_strike_prem_zscore
+      from 
+        (
+          select distinct 
+            file_version_date,
+            underlying_symbol,
+            expiry,
+            strike,
+            total_strike_prem,
+            sweep_strike_vol, 
+            sweep_strike_prem, 
+            bull_strike_trades, 
+            bull_strike_vol, 
+            bull_strike_prem, 
+            net_strike_prem
+          from trades_agg
+        ) ta
+      )
+      select distinct 
+        ta.*, 
+        chain_vol_diff_zscore,
+        chain_oi_diff_zscore,
+        chain_trades_zscore,
+        chain_sweep_vol_zscore,
+        chain_prem_zscore,
+        chain_sweep_prem_zscore,
+        chain_sweep_vol_zscore,
+        total_strike_prem_zscore,
+        sweep_strike_vol_zscore,
+        sweep_strike_prem_zscore,
+        bull_strike_trades_zscore,
+        bull_strike_vol_zscore,
+        bull_strike_prem_zscore,
+        net_strike_prem_zscore
+      from trades_agg ta
+      inner join option_type_zscore oz
+      on oz.file_version_date = ta.file_version_date
+      and oz.underlying_symbol = ta.underlying_symbol
+      and oz.option_type = ta.option_type
+      and oz.expiry = ta.expiry
+      and oz.strike = ta.strike
+      inner join strike_zscore sz
+      on sz.file_version_date = ta.file_version_date
+      and sz.underlying_symbol = ta.underlying_symbol
+      and sz.expiry = ta.expiry
+      and sz.strike = ta.strike
+      order by ta.file_version_date, ta.underlying_symbol, ta.option_chain_id

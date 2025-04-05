@@ -1,0 +1,22 @@
+api_base:
+  base_url: "https://api.polygon.io"
+  api_key: "sgYAmnLzqdmFb59PyjgXULAB_7tlsUwq"  # Replace with your actual key
+  endpoints:
+    market:
+      aggregates: "/v2/aggs/ticker/"
+      daily: "/v2/aggs/grouped/locale/us/market/stocks/"
+    reference:
+      tickers: "/v3/reference/tickers?active=true&limit="
+      ticker_details: "/v3/reference/tickers/"
+      market_holidays: "/v1/marketstatus/upcoming"
+      related_companies: "/v1/related-companies/"
+
+s3_base:
+  access_key_id: "12aaaf88-4e45-4d08-ab4f-cd0413c9d783"           # Replace with your S3 access key
+  secret_access_key: "sgYAmnLzqdmFb59PyjgXULAB_7tlsUwq"       # Replace with your S3 secret key
+  s3_endpoint: "https://files.polygon.io"
+  bucket: "flatfiles"
+
+local_storage:
+  json_raw_path: "R:\\local_bucket\\raw_store\\polygonio\\json"
+  parquet_raw_path: "R:\\local_bucket\\raw_store\\polygonio\\parquet"
